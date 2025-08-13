@@ -3,43 +3,113 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Credit Insights — Articles</title>
+  <title>Credit Insights — Clear Credit Insights</title>
+  <meta name="description" content="Evergreen articles on commercial credit underwriting."/>
   <style>
-    :root{--brand-navy:#1a3e5c;--brand-gold:#f4b400;--bg:#f4f6f8;--text:#222;--card:#fff;}
+    :root{--brand-navy:#1a3e5c;--brand-navy-2:#2a5787;--brand-gold:#f4b400;--text:#222;--bg:#f4f6f8;--card:#fff;}
     body{font-family:'Segoe UI',Tahoma,Verdana,sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.7;font-size:18px}
-    header{background:var(--brand-navy);color:#fff;text-align:center;padding:26px 16px}
-    header h1{margin:0;font-size:2rem}
-    main{max-width:1000px;margin:30px auto;padding:0 16px}
-    .grid{display:grid;gap:18px}
-    @media(min-width:800px){.grid{grid-template-columns:repeat(3,1fr)}}
-    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 16px rgba(0,0,0,.08)}
+
+    /* Brand header + sticky nav (same as other pages) */
+    header.brand-header{background:var(--brand-navy);color:#fff;padding:20px 24px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+    .brand{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center}
+    .brand img{height:110px;width:auto;border-radius:8px}
+    .brand h1{margin:0;font-size:2rem}
+    .tagline{font-size:1.05rem;opacity:.95}
+    .sticky-nav{position:sticky;top:0;z-index:1000;background:var(--brand-navy);box-shadow:0 6px 18px rgba(0,0,0,.12)}
+    .sticky-nav-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:22px;flex-wrap:wrap;align-items:center;padding:10px 16px}
+    .sticky-nav a{color:#fff;text-decoration:none;font-weight:600;font-size:.98rem;padding-bottom:2px;border-bottom:2px solid transparent}
+    .sticky-nav a:hover,.sticky-nav a:focus{border-color:var(--brand-gold)}
+    .login-btn{background:var(--brand-gold);color:var(--brand-navy);padding:10px 16px;border-radius:999px;font-weight:800;text-decoration:none}
+
+    main{max-width:1100px;margin:30px auto;padding:0 16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-top:12px}
+    .card{background:var(--card);padding:20px;border-radius:12px;box-shadow:0 6px 16px rgba(0,0,0,.08)}
     .card h3{margin:0 0 8px 0;color:var(--brand-navy)}
-    .card a{display:inline-block;text-decoration:none;font-weight:800;color:var(--brand-navy)}
-    .card a:hover{color:var(--brand-gold)}
-    footer{background:var(--brand-navy);color:#fff;text-align:center;padding:22px;margin-top:40px}
+    .card p{margin:0 0 12px 0}
+    .card a{display:inline-block;text-decoration:none;font-weight:700;color:var(--brand-navy);border-bottom:2px solid var(--brand-gold)}
+    .search{display:flex;gap:10px;align-items:center;margin:16px 0}
+    .search input{flex:1;padding:10px 12px;border-radius:10px;border:1px solid #cfd8e3;font-size:1rem}
+    .msg{margin:16px 0;padding:12px;border-left:4px solid var(--brand-gold);background:#fff}
+    footer{background:var(--brand-navy);color:#fff;text-align:center;padding:26px;margin-top:40px}
+    footer a{color:#fff}
   </style>
 </head>
 <body>
-  <header>
-    <h1>Credit Insights</h1>
-    <p>Short, plain-language articles for faster, safer decisions.</p>
-  </header>
-  <main>
-    <div class="grid">
-      <div class="card">
-        <h3>The 5 Cs of Credit</h3>
-        <p>Character, Capacity, Capital, Collateral, and Conditions — how to apply them in modern underwriting.</p>
-        <a href="article.html?post=5-cs-of-credit">Read article →</a>
+  <!-- Brand header -->
+  <header class="brand-header" aria-label="Company header">
+    <div class="brand">
+      <img src="logo-clear-credit-insights.png" alt="Clear Credit Insights logo">
+      <div>
+        <h1>Clear Credit Insights</h1>
+        <div class="tagline">Clarity in Credit. Confidence in Decisions.</div>
       </div>
     </div>
+  </header>
+  <!-- Sticky nav -->
+  <div class="sticky-nav" role="navigation" aria-label="Sticky navigation">
+    <div class="sticky-nav-inner">
+      <a href="index.html#services">Services</a>
+      <a href="insights.html">Credit Insights</a>
+      <a href="index.html#process">Process</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="https://portal.clearcreditinsights.com" class="login-btn">Client Login</a>
+    </div>
+  </div>
+
+  <main>
+    <h2 style="color:var(--brand-navy);margin:0 0 6px 0">Credit Insights</h2>
+    <div class="search">
+      <input id="q" type="search" placeholder="Search titles and summaries…" aria-label="Search articles">
+    </div>
+    <div id="status" class="msg">Loading articles…</div>
+    <div id="list" class="grid" aria-live="polite"></div>
   </main>
-<footer>
-  <p>&copy; 2025 Clear Credit Insights. All rights reserved.
-    · <a href="security-compliance.html" style="color:#fff">Security & Compliance</a>
-    · <a href="vendor-due-diligence.html" style="color:#fff">Vendor Due Diligence</a>
-    · <a href="privacy.html" style="color:#fff">Privacy</a>
-    · <a href="terms.html" style="color:#fff">Terms</a>
-  </p>
-</footer>
+
+  <footer>
+    <p>&copy; 2025 Clear Credit Insights. All rights reserved.
+      · <a href="security-compliance.html">Security &amp; Compliance</a>
+      · <a href="vendor-due-diligence.html">Vendor Due Diligence</a>
+      · <a href="privacy.html">Privacy</a>
+      · <a href="terms.html">Terms</a>
+    </p>
+  </footer>
+
+  <script>
+    const statusEl = document.getElementById('status');
+    const listEl = document.getElementById('list');
+    const qEl = document.getElementById('q');
+    let all = [];
+
+    function setStatus(html){ statusEl.innerHTML = html; }
+    function render(items){
+      listEl.innerHTML = items.map(a => `
+        <div class="card">
+          <h3>${escapeHtml(a.title)}</h3>
+          <p>${escapeHtml(a.summary || '')}</p>
+          <a href="article.html?post=${encodeURIComponent(a.slug)}">Read article →</a>
+        </div>
+      `).join('');
+      setStatus(items.length ? '' : 'No articles match your search.');
+    }
+    function escapeHtml(s){ return (s||'').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+
+    // Fetch index.json
+    fetch('articles/index.json?v=' + Date.now(), { cache:'no-store' })
+      .then(r => { if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(json => { all = json || []; render(all); })
+      .catch(err => setStatus('Could not load articles. Make sure <code>articles/index.json</code> exists.'));
+
+    // Search/filter
+    qEl.addEventListener('input', () => {
+      const q = qEl.value.trim().toLowerCase();
+      if(!q) return render(all);
+      const filtered = all.filter(a =>
+        (a.title||'').toLowerCase().includes(q) ||
+        (a.summary||'').toLowerCase().includes(q)
+      );
+      render(filtered);
+    });
+  </script>
 </body>
 </html>
