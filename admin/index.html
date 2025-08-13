@@ -5,99 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Content Manager</title>
 
-  <!-- Identity widget -->
+  <!-- Netlify Identity (login) -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-  <!-- IMPORTANT: Tell Decap we'll init manually (must be BEFORE the CMS script) -->
-  <script>window.CMS_MANUAL_INIT = true;</script>
-
-  <!-- Pin Decap CMS to a stable version (avoid "latest" quirks) -->
+  <!-- IMPORTANT: we are NOT doing manual init now -->
+  <!-- Load Decap CMS (stable pinned version) -->
   <script src="https://cdn.jsdelivr.net/npm/decap-cms@2.15.1/dist/decap-cms.js"></script>
 
   <style>
     #status{font-family:system-ui,Segoe UI,Roboto,Arial;margin:16px;padding:12px;border-left:4px solid #f4b400;background:#fff}
-    #btn{margin:0 0 8px 16px;padding:8px 12px;border-radius:8px}
   </style>
 </head>
 <body>
   <div id="status">Booting…</div>
-  <button id="btn">Open Login / Sign up</button>
 
   <script>
-    // Small helper to show status on-page (easier than mobile devtools)
+    // Show status messages on-page (helps on mobile)
     function setStatus(msg){ document.getElementById('status').innerHTML = msg; }
 
-    // Identity helpers
-    (function(){
-      if (!window.netlifyIdentity) { setStatus('Identity widget failed to load.'); return; }
-      setStatus('Identity widget loaded.');
-      document.getElementById('btn').onclick = () => netlifyIdentity.open('login');
-      netlifyIdentity.on('init', (user) => {
-        setStatus('Identity init: ' + (user ? 'signed in' : 'signed out'));
-        if (!user) netlifyIdentity.open('login');
-      });
-      netlifyIdentity.on('login', () => { setStatus('Logged in. Reloading…'); location.reload(); });
-      netlifyIdentity.on('logout', () => { setStatus('Logged out. Reloading…'); location.reload(); });
-    })();
-
-    // Initialize CMS manually (no fetch of /admin/config.yml)
-    (function(){
-      // Wait until Decap is present
-      function waitForCMS(tries){
-        if (window.CMS && typeof window.CMS.init === 'function') return initCMS();
-        if (tries > 40) { setStatus('CMS failed to load.'); return; }
-        setStatus('Waiting for CMS… (' + tries + ')');
-        return setTimeout(() => waitForCMS(tries+1), 150);
-      }
-
-      function initCMS(){
-        try {
-          setStatus('CMS loaded. Initializing…');
-          const cfg = {
-            backend: { name: 'git-gateway', branch: 'main' }, // change to 'master' if your repo default is master
-            media_folder: 'assets/uploads',
-            public_folder: '/assets/uploads',
-            collections: [
-              {
-                name: 'articles',
-                label: 'Articles',
-                folder: 'articles',
-                create: true,
-                slug: '{{slug}}',
-                extension: 'md',
-                preview_path: 'article.html?post={{slug}}',
-                fields: [
-                  { label: 'Title',   name: 'title',   widget: 'string'   },
-                  { label: 'Summary', name: 'summary', widget: 'text'     },
-                  { label: 'Body',    name: 'body',    widget: 'markdown' },
-                ]
-              }
-            ]
-          };
-          CMS.init({ config: cfg });
-          <script>
-  CMS.registerEventListener({
-    name: 'error',
-    handler: ({ error }) => {
-      const box = document.getElementById('status') || (function(){
-        const el = document.createElement('div');
-        el.id = 'status';
-        el.style.cssText = 'font-family:system-ui; margin:16px; padding:12px; background:#fff; border-left:4px solid #f4b400;';
-        document.body.prepend(el);
-        return el;
-      })();
-      box.innerText = 'CMS error: ' + (error && error.message ? error.message : String(error));
+    // Identity: open login if needed, then reload so CMS gets the token
+    if (window.netlifyIdentity) {
+      netlifyIdentity.on('init', (user) => { if (!user) netlifyIdentity.open('login'); });
+      netlifyIdentity.on('login', () => location.reload());
+      netlifyIdentity.on('logout', () => location.reload());
     }
-  });
-</script>
-          setStatus('CMS initialized. If UI is empty, ensure Git Gateway is enabled.');
-        } catch (e) {
-          setStatus('Init error: ' + (e && e.message ? e.message : e));
-        }
-      }
 
-      waitForCMS(1);
-    })();
+    // After CMS loads, attach a global error listener to surface issues
+    (function waitForCMS(tries){
+      if (window.CMS && typeof CMS.init === 'function') {
+        setStatus('CMS loaded. Fetching /admin/config.yml …');
+        // Show any runtime errors (e.g., Git Gateway)
+        try {
+          CMS.registerEventListener({
+            name: 'error',
+            handler: ({ error }) => setStatus('CMS error: ' + (error?.message || String(error)))
+          });
+        } catch(e){ /* no-op */ }
+        // Nothing else to do; Decap will auto-load /admin/config.yml
+        return;
+      }
+      if (tries > 40) return setStatus('CMS failed to load (network/cdn blocked). Try another browser or network.');
+      setTimeout(() => waitForCMS(tries+1), 150);
+    })(1);
   </script>
 </body>
 </html>
