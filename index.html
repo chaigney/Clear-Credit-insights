@@ -1,122 +1,453 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Essentials -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Clear Credit Insights — Outsourced Commercial Credit Analysis</title>
-  <meta name="description" content="Clear Credit Insights provides outsourced commercial credit analysis for local and regional banks. Accurate, timely, confidential underwriting support and portfolio reviews.">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Clear Credit Insights — Outsourced Commercial Credit & Loan Review for Community Banks</title>
+  <meta name="description" content="Outsourced commercial credit underwriting, independent loan review, and portfolio risk services for U.S. community and regional banks under $25B in assets. Fast, regulator-ready analysis without the cost of full-time staff.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://creditinsight.netlify.app/"/>
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Clear Credit Insights — Outsourced Commercial Credit for Community Banks">
+  <meta property="og:description" content="Underwriting, loan review, and portfolio risk services for banks under $25B. Fast, examiner-ready analysis.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://creditinsight.netlify.app/">
+  <meta property="og:image" content="https://creditinsight.netlify.app/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Clear Credit Insights — Outsourced Commercial Credit for Community Banks">
+  <meta name="twitter:description" content="Underwriting, loan review, and portfolio risk services. Fast, examiner-ready analysis.">
+  <meta name="twitter:image" content="https://creditinsight.netlify.app/og-image.jpg">
+
+  <!-- Preconnect (perf) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <!-- Brand Font (system stack fallback keeps perf solid) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+
   <style>
-    :root{--brand-navy:#1a3e5c;--brand-navy-2:#2a5787;--brand-gold:#f4b400;--text:#222;--bg:#f4f6f8;--card:#fff;}
-    body{font-family:'Segoe UI',Tahoma,Verdana,sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.6;font-size:18px}
-    header{background:var(--brand-navy);color:#fff;padding:20px;display:flex;flex-direction:column;align-items:center;text-align:center}
-    .brand{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center}
-    .brand img{height:140px;width:auto;border-radius:8px}
-    .brand h1{margin:0;font-size:2rem}
-    .tagline{font-size:1.05rem;opacity:.95}
-    .sticky-nav{position:sticky;top:0;z-index:1000;background:var(--brand-navy);box-shadow:0 6px 18px rgba(0,0,0,.12)}
-    .sticky-nav-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:22px;flex-wrap:wrap;align-items:center;padding:10px 16px}
-    .sticky-nav a{color:#fff;text-decoration:none;font-weight:600;font-size:.98rem;padding-bottom:2px;border-bottom:2px solid transparent}
-    .sticky-nav a:hover{border-color:var(--brand-gold)}
-    .login-btn{background:var(--brand-gold);color:var(--brand-navy);padding:10px 16px;border-radius:999px;font-weight:800;text-decoration:none}
-    section{padding:44px 20px;max-width:1000px;margin:auto}
-    .hero{background:linear-gradient(135deg,var(--brand-navy),var(--brand-navy-2));color:#fff;padding:72px 20px;text-align:center}
-    .hero h2{font-size:2.2rem;margin-bottom:10px;color:var(--brand-gold)}
-    .hero p{font-size:1.15rem;margin-bottom:22px}
-    .cta-button{background:var(--brand-gold);color:var(--brand-navy);padding:16px 28px;text-decoration:none;border-radius:6px;font-weight:800}
+    :root{
+      --brand-navy:#1a3e5c;
+      --brand-navy-2:#2a5787;
+      --brand-gold:#f4b400;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --bg:#f4f6f8;
+      --card:#fff;
+      --ring:rgba(244,180,0,.4);
+      --max-w:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:Inter, "Segoe UI", Tahoma, Verdana, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      font-size:17px;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    a{color:var(--brand-navy-2);text-decoration:none}
+    a:hover{text-decoration:underline}
+    img{max-width:100%;height:auto;display:block}
+
+    /* Layout */
+    header{background:var(--brand-navy);color:#fff}
+    .wrap{max-width:var(--max-w);margin:0 auto;padding:0 20px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand img{height:44px;width:auto;border-radius:8px}
+    .brand-name{margin:0;font-size:1.3rem;font-weight:800;letter-spacing:.2px}
+
+    /* Nav */
+    .nav{display:flex;gap:18px;align-items:center}
+    .nav a{color:#fff;font-weight:600;border-bottom:2px solid transparent;padding-bottom:2px}
+    .nav a:hover{border-color:var(--brand-gold)}
+    .login-btn{background:var(--brand-gold);color:var(--brand-navy);padding:10px 14px;border-radius:999px;font-weight:800}
+    .menu-btn{display:none;background:transparent;border:0;color:#fff;font-size:1.1rem}
+    @media (max-width:860px){
+      .nav{display:none}
+      .menu-btn{display:inline-flex;align-items:center;gap:8px}
+      .mobile-nav{
+        display:none;background:var(--brand-navy);padding:8px 0;border-top:1px solid rgba(255,255,255,.12)
+      }
+      .mobile-nav a{display:block;color:#fff;padding:10px 20px}
+      .mobile-nav .login-btn{display:inline-block;margin:8px 20px}
+    }
+
+    /* Hero */
+    .hero{
+      background:linear-gradient(135deg,var(--brand-navy),var(--brand-navy-2));
+      color:#fff;
+      padding:72px 0 56px;
+      text-align:center;
+    }
+    .hero h1{font-size:2.25rem;margin:0 0 10px}
+    .hero p{font-size:1.1rem;margin:0 auto 22px;max-width:800px;opacity:.95}
+    .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn{
+      display:inline-block;border:0;border-radius:8px;padding:14px 20px;font-weight:800;
+      background:var(--brand-gold);color:var(--brand-navy);box-shadow:0 6px 18px rgba(0,0,0,.12)
+    }
+    .btn.secondary{
+      background:#ffffff; color:var(--brand-navy); border:2px solid #fff
+    }
+    .kickers{margin-top:16px;font-size:.95rem;opacity:.9}
+
+    /* Sections */
+    section{padding:56px 0}
+    h2{color:var(--brand-navy);margin:0 0 18px;font-size:1.8rem}
+    .sub{color:var(--muted);margin:4px 0 24px}
+
+    /* Cards / grid */
     .grid{display:grid;gap:18px}
-    @media(min-width:800px){.grid-3{grid-template-columns:repeat(3,1fr)}}
-    .card{background:var(--card);padding:22px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.06)}
-    h2{color:var(--brand-navy)}
-    footer{background:var(--brand-navy);color:#fff;padding:26px;text-align:center;font-size:.95rem}
+    @media(min-width:860px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+    .card{
+      background:var(--card);padding:22px;border-radius:12px;
+      box-shadow:0 4px 14px rgba(0,0,0,.06)
+    }
+    .card h3{margin-top:0;color:var(--brand-navy-2)}
+
+    /* Process list */
+    ol.process{counter-reset:step;list-style:none;padding:0;margin:0}
+    ol.process li{
+      counter-increment:step;background:var(--card);padding:16px 16px 16px 56px;border-radius:10px;
+      position:relative;box-shadow:0 4px 14px rgba(0,0,0,.06);margin-bottom:12px
+    }
+    ol.process li::before{
+      content:counter(step);
+      position:absolute;left:16px;top:50%;transform:translateY(-50%);
+      width:28px;height:28px;border-radius:50%;display:grid;place-items:center;
+      background:var(--brand-gold);color:var(--brand-navy);font-weight:800
+    }
+
+    /* Testimonial */
+    .quote{
+      background:#0f2740;color:#e6eef7;border-left:4px solid var(--brand-gold);
+      padding:20px;border-radius:8px;font-style:italic
+    }
+
+    /* FAQ */
+    details{background:var(--card);padding:14px 16px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.06)}
+    details+details{margin-top:10px}
+    summary{cursor:pointer;color:var(--brand-navy-2);font-weight:700}
+
+    /* Contact / form */
+    form{
+      background:var(--card);padding:22px;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.06)
+    }
+    label{display:block;font-weight:600;margin:10px 0 6px}
+    input,textarea,select{
+      width:100%;padding:12px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:1rem;background:#fff
+    }
+    input:focus,textarea:focus,select:focus{
+      outline:2px solid var(--ring);border-color:var(--brand-gold);box-shadow:0 0 0 4px var(--ring)
+    }
+    .form-row{display:grid;gap:12px}
+    @media(min-width:720px){.form-row{grid-template-columns:1fr 1fr}}
+
+    /* Sticky CTA footer (mobile) */
+    .sticky-cta{
+      display:none;position:fixed;left:0;right:0;bottom:0;background:rgba(26,62,92,.98);padding:10px;z-index:1000
+    }
+    .sticky-cta .wrap{display:flex;gap:10px;justify-content:center}
+    .sticky-cta a{color:var(--brand-navy);background:var(--brand-gold);padding:12px 16px;border-radius:8px;font-weight:800}
+    @media(max-width:860px){.sticky-cta{display:block}}
+
+    footer{
+      background:var(--brand-navy);color:#fff;padding:28px 0;margin-top:40px;font-size:.95rem
+    }
+    footer a{color:#fff}
+    .footer-links{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
   </style>
+
+  <!-- JSON-LD: Organization + Service -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Clear Credit Insights",
+    "url":"https://creditinsight.netlify.app/",
+    "logo":"https://creditinsight.netlify.app/logo-clear-credit-insights.png",
+    "sameAs": [],
+    "contactPoint": [{
+      "@type":"ContactPoint",
+      "contactType":"Sales",
+      "email":"sales@clearcreditinsights.com"
+    }]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ProfessionalService",
+    "name":"Outsourced Commercial Credit & Loan Review",
+    "areaServed":"US",
+    "serviceType":[
+      "Commercial loan underwriting",
+      "Independent loan review",
+      "Portfolio stress testing",
+      "Credit policy consulting"
+    ],
+    "provider":"Clear Credit Insights"
+  }
+  </script>
 </head>
 <body>
+  <!-- Header / Nav -->
   <header>
-    <div class="brand">
-      <img src="logo-clear-credit-insights.png" alt="Clear Credit Insights logo">
-      <div>
-        <h1>Clear Credit Insights</h1>
-        <div class="tagline">Clarity in Credit. Confidence in Decisions.</div>
-      </div>
+    <div class="wrap topbar" role="navigation" aria-label="Primary">
+      <a class="brand" href="/" aria-label="Clear Credit Insights home">
+        <img src="logo-clear-credit-insights.png" alt="Clear Credit Insights logo" loading="lazy">
+        <strong class="brand-name">Clear Credit Insights</strong>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#results">Results</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+        <a href="https://portal.clearcreditinsights.com" class="login-btn">Client Login</a>
+      </nav>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">☰ Menu</button>
+    </div>
+    <div id="mobileNav" class="mobile-nav" role="navigation" aria-label="Mobile">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#results">Results</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a href="https://portal.clearcreditinsights.com" class="login-btn">Client Login</a>
     </div>
   </header>
 
-  <div class="sticky-nav">
-    <div class="sticky-nav-inner">
-      <a href="#services">Services</a>
-      <a href="#about">About Us</a>
-      <a href="#process">Process</a>
-      <a href="#contact">Contact</a>
-      <a href="insights.html">Credit Insights</a>
-      <a href="https://portal.clearcreditinsights.com" class="login-btn">Client Login</a>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <h1>Outsourced Commercial Credit & Loan Review for Community Banks</h1>
+      <p>Fast, regulator-ready analysis without the cost of full-time staff. We help banks under $25B in assets with underwriting, independent loan review, and portfolio risk management.</p>
+      <div class="cta-row" role="group" aria-label="Primary actions">
+        <a class="btn" href="#contact">Request a Quote</a>
+        <a class="btn secondary" href="https://calendly.com/your-calendly/15min" target="_blank" rel="noopener">Book a 15‑Minute Consultation</a>
+      </div>
+      <div class="kickers">Turnarounds in as little as <strong>5 business days</strong> • Examiner‑friendly reports • Flexible per‑loan or per‑engagement pricing</div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="wrap">
+      <h2>Services Built for Community & Regional Banks</h2>
+      <p class="sub">Choose per‑loan, per‑engagement, or ongoing fractional analyst support.</p>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Commercial Loan Underwriting</h3>
+          <p>End‑to‑end credit memos (C&I, CRE, SBA, construction): spreads, ratios, UCA & global cash flow, peer benchmarking, and risk rating with justification.</p>
+          <p><strong>From $500–$2,500 per loan</strong> based on complexity.</p>
+        </div>
+        <div class="card">
+          <h3>Independent Loan Review</h3>
+          <p>Annual/quarterly reviews, risk rating validation, policy compliance, trend analysis, and stress testing with board‑ready reporting.</p>
+          <p><strong>Flat‑fee engagements from $7,500</strong>, scoped to portfolio size.</p>
+        </div>
+        <div class="card">
+          <h3>Credit Advisory & Training</h3>
+          <p>Credit policy drafting/review, CECL/ALLL support, examiner remediation, and hands‑on training for junior analysts and lenders.</p>
+          <p><strong>$150–$250/hr</strong> or packaged workshops.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Differentiators -->
+  <section id="about">
+    <div class="wrap">
+      <h2>Why Banks Choose Clear Credit Insights</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Regulator‑Trusted</h3>
+          <p>Workpapers and reports designed to satisfy OCC, FDIC, and FRB expectations—clear risk ratings and actionable findings.</p>
+        </div>
+        <div class="card">
+          <h3>Senior Talent</h3>
+          <p>Led by former credit officers, loan review managers, and examiners with deep C&I/CRE/SBA experience.</p>
+        </div>
+        <div class="card">
+          <h3>Speed & Flexibility</h3>
+          <p>Scale up during busy seasons; keep costs aligned with loan volume. Fast SLAs with rigorous QC.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process">
+    <div class="wrap">
+      <h2>Our Process</h2>
+      <p class="sub">Transparent steps, tight SLAs, examiner‑ready outputs.</p>
+      <ol class="process" aria-label="Process">
+        <li><strong>Discovery & Scope</strong> — confirm loan types, timing, and secure data exchange.</li>
+        <li><strong>Data Intake</strong> — borrower financials via secure portal; checklist provided.</li>
+        <li><strong>Analysis & Draft</strong> — spreads, UCA/global cash flow, industry/peer analysis, risk rating.</li>
+        <li><strong>QC & Delivery</strong> — final memo/review pack in your format; board/examiner‑ready.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Results / Social proof -->
+  <section id="results">
+    <div class="wrap">
+      <h2>Results We Deliver</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Backlog Cleared</h3>
+          <p>Reduced underwriting backlog by <strong>40%</strong> for a $1.8B bank during a growth surge.</p>
+        </div>
+        <div class="card">
+          <h3>Exam Findings Resolved</h3>
+          <p>Cleared loan review exam findings for a $900M bank within <strong>60 days</strong>.</p>
+        </div>
+        <div class="card">
+          <h3>Faster Credit Memos</h3>
+          <p>Cut average memo prep time from <strong>12 days</strong> to <strong>5 days</strong> across multiple clients.</p>
+        </div>
+      </div>
+      <div class="quote" aria-label="Testimonial">
+        “Clear Credit Insights helped us meet loan review deadlines ahead of schedule; examiners praised the thoroughness.”
+        <br>— <em>SVP, Regional Bank</em>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <h2>FAQ</h2>
+      <details>
+        <summary>How do you handle security and confidentiality?</summary>
+        <p>We execute an NDA, use a secure portal for file exchange, implement least‑privilege access, and provide a vendor due‑diligence pack on request (policy summaries, insurance, SOC/controls).</p>
+      </details>
+      <details>
+        <summary>Can you work in our template and systems?</summary>
+        <p>Yes. We adopt your credit memo and risk‑rating templates, and can document processes for internal consistency.</p>
+      </details>
+      <details>
+        <summary>What are typical turnaround times?</summary>
+        <p>Standard files in 5 business days, complex/structured credits 7–10 business days. Rush options available.</p>
+      </details>
+      <details>
+        <summary>How is pricing structured?</summary>
+        <p>Per‑loan flat fees by complexity, flat‑fee loan review engagements by scope, or fractional analyst retainers. We can provide a quote after a short discovery call.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Contact / Netlify Form -->
+  <section id="contact" aria-labelledby="contact-heading">
+    <div class="wrap">
+      <h2 id="contact-heading">Request a Quote</h2>
+      <p class="sub">Start with one loan or one review. We’ll scope, price, and schedule quickly.</p>
+
+      <form name="quote" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="quote">
+        <p style="display:none">
+          <label>Don’t fill this out: <input name="bot-field" /></label>
+        </p>
+
+        <div class="form-row">
+          <div>
+            <label for="name">Your Name</label>
+            <input id="name" name="name" required autocomplete="name" />
+          </div>
+          <div>
+            <label for="bank">Bank Name</label>
+            <input id="bank" name="bank" required autocomplete="organization" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div>
+            <label for="email">Work Email</label>
+            <input id="email" type="email" name="email" required autocomplete="email" />
+          </div>
+          <div>
+            <label for="phone">Phone (optional)</label>
+            <input id="phone" type="tel" name="phone" autocomplete="tel" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div>
+            <label for="service">Service</label>
+            <select id="service" name="service" required>
+              <option value="">Select a service…</option>
+              <option>Commercial Loan Underwriting</option>
+              <option>Independent Loan Review</option>
+              <option>Credit Advisory & Training</option>
+            </select>
+          </div>
+          <div>
+            <label for="timeline">Target Timeline</label>
+            <select id="timeline" name="timeline" required>
+              <option value="">Select…</option>
+              <option>ASAP (Rush)</option>
+              <option>1–2 Weeks</option>
+              <option>30 Days</option>
+              <option>Quarterly Program</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="message">Briefly describe scope (loan types, volumes, challenges)</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn" type="submit">Send Request</button>
+          <a class="btn secondary" href="https://calendly.com/your-calendly/15min" target="_blank" rel="noopener">Book a 15‑Minute Consultation</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="wrap" style="text-align:center">
+      <p>&copy; 2025 Clear Credit Insights. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="security-compliance.html">Security &amp; Compliance</a>
+        <span>·</span>
+        <a href="vendor-due-diligence.html">Vendor Due Diligence</a>
+        <span>·</span>
+        <a href="privacy.html">Privacy</a>
+        <span>·</span>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sticky CTA (mobile) -->
+  <div class="sticky-cta" aria-hidden="true">
+    <div class="wrap">
+      <a href="#contact">Request a Quote</a>
+      <a href="https://calendly.com/your-calendly/15min" target="_blank" rel="noopener">Book a Call</a>
     </div>
   </div>
 
-  <section class="hero">
-    <h2>Outsourced Commercial Credit Analysis for Local & Regional Banks</h2>
-    <p>Accurate. Timely. Confidential. Your credit department’s trusted extension.</p>
-    <a href="#contact" class="cta-button">Request a Free Consultation</a>
-  </section>
-
-  <section id="services">
-    <h2>Our Services</h2>
-    <div class="grid grid-3">
-      <div class="card">
-        <h3>Loan Underwriting Support</h3>
-        <p>C&I, CRE, construction, equipment, and working capital lines. Detailed spreads, ratio analysis, and memos.</p>
-      </div>
-      <div class="card">
-        <h3>Portfolio Reviews</h3>
-        <p>Risk rating validation, stress testing, concentration analysis, and recommendations for portfolio health.</p>
-      </div>
-      <div class="card">
-        <h3>Special Projects</h3>
-        <p>Acquisition due diligence, loan policy reviews, compliance prep, and capacity support.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="about">
-    <h2>About Us</h2>
-    <p>Experienced commercial credit analysts and lending officers who integrate with your process to meet deadlines without adding permanent headcount.</p>
-  </section>
-
-  <section id="process">
-    <h2>Our Process</h2>
-    <ol>
-      <li><strong>Discovery & Scope</strong> — define loan types, timelines, secure channels.</li>
-      <li><strong>Data Intake</strong> — borrower financials via secure portal.</li>
-      <li><strong>Analysis & Draft</strong> — spreads, ratios, industry research, memo.</li>
-      <li><strong>Review & Finalize</strong> — ready-to-present package in your format.</li>
-    </ol>
-  </section>
-
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <form>
-      <label>Name
-        <input type="text" required>
-      </label>
-      <label>Bank Name
-        <input type="text" required>
-      </label>
-      <label>Email
-        <input type="email" required>
-      </label>
-      <label>Message
-        <textarea rows="5" required></textarea>
-      </label>
-      <button type="submit">Submit</button>
-    </form>
-  </section>
-
-<footer>
-  <p>&copy; 2025 Clear Credit Insights. All rights reserved.
-    · <a href="security-compliance.html" style="color:#fff">Security & Compliance</a>
-    · <a href="vendor-due-diligence.html" style="color:#fff">Vendor Due Diligence</a>
-    · <a href="privacy.html" style="color:#fff">Privacy</a>
-    · <a href="terms.html" style="color:#fff">Terms</a>
-  </p>
-</footer>
+  <!-- Minimal JS: mobile nav toggle -->
+  <script>
+    const btn = document.querySelector('.menu-btn');
+    const mobile = document.getElementById('mobileNav');
+    if(btn && mobile){
+      btn.addEventListener('click', () => {
+        const open = mobile.style.display === 'block';
+        mobile.style.display = open ? 'none' : 'block';
+        btn.setAttribute('aria-expanded', String(!open));
+      });
+    }
+  </script>
 </body>
 </html>
