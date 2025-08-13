@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Ping</title>
+<style>body{font-family:system-ui;margin:20px} pre{background:#f6f8fa;padding:10px;border-radius:6px;overflow:auto}</style>
+</head>
+<body>
+<h1>Config ping</h1>
+<div id="out">Checking…</div>
+<script>
+(async () => {
+  const out = document.getElementById('out');
+  function log(msg){ out.innerHTML += '<div>'+msg+'</div>'; }
+  async function check(url){
+    try{
+      const r = await fetch(url, {cache:'no-store'});
+      log('GET ' + url + ' → ' + r.status + ' ' + r.statusText);
+      const txt = await r.text();
+      log('Length: ' + txt.length + ' bytes');
+      log('<strong>First 200 chars:</strong>');
+      out.insertAdjacentHTML('beforeend','<pre>'+txt.slice(0,200).replace(/[&<>]/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[s]))+'</pre>');
+    }catch(e){ log('Error: ' + e.message); }
+  }
+  await check('/admin/config.yml');       // absolute path
+  await check('config.yml');              // relative (from /admin/)
+})();
+</script>
+</body>
+</html>
