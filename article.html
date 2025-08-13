@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Credit Insights — Article</title>
   <meta name="description" content="Article detail - Clear Credit Insights">
+  <!-- Load marked (Markdown parser). If CDN blocks, we still show fallback text. -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     :root{--brand-navy:#1a3e5c;--brand-gold:#f4b400;--bg:#f4f6f8;--text:#222;--card:#fff;}
@@ -29,18 +30,14 @@
     <a class="back" href="insights.html">← Back to all articles</a>
     <noscript><div class="msg">This page requires JavaScript to load the article.</div></noscript>
   </main>
+
   <script>
     (function(){
       // Helpers
-      function getParam(name){ try{ return new URL(location.href).searchParams.get(name) }catch(e){ return null } }
+      function getParam(name){ try{ return new URL(location.href).searchParams.get(name); }catch(e){ return null; } }
       function stripFrontMatter(md){
-        // remove leading '--- ... ---' block if present
-        return md.replace(/^---[\\s\\S]*?---\\s*/, '');
-      }
-      function fallbackMarkdown(md){
-        // very minimal fallback: escape HTML and preserve spacing
-        const esc = md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-        return '<pre>'+esc+'</pre>';
+        // Remove a leading YAML block: --- ... ---  (including trailing newline/space)
+        return md.replace(/^---[\s\S]*?---\s*/, '');
       }
       function setStatus(html){ document.getElementById('status').innerHTML = html; }
 
@@ -52,8 +49,9 @@
         return;
       }
 
-      const url = 'articles/' + slug + '.md';
-      setStatus('Fetching <code>'+url+'</code> …');
+      // Cache-bust to avoid stale copies on mobile/CDN
+      const url = 'articles/' + slug + '.md?v=' + Date.now();
+      setStatus('Fetching <code>'+url.replace(/\?.+$/,'')+'</code> …');
 
       fetch(url, {cache:'no-store'})
         .then(r => {
@@ -61,21 +59,23 @@
           return r.text();
         })
         .then(md => {
-          setStatus('Rendering article…');
           const bodyOnly = stripFrontMatter(md || '');
           if (window.marked && typeof window.marked.parse === 'function') {
             target.innerHTML = window.marked.parse(bodyOnly);
+            setStatus(''); // clear
           } else {
-            target.innerHTML = fallbackMarkdown(bodyOnly);
+            // Fallback: just show the markdown as preformatted text
+            target.innerHTML = '<pre>'+bodyOnly
+              .replace(/&/g,'&amp;')
+              .replace(/</g,'&lt;')
+              .replace(/>/g,'&gt;')+'</pre>';
             setStatus('<strong>Note:</strong> Markdown library not loaded; showing plain text.');
-            return;
           }
-          setStatus(''); // clear status
           window.scrollTo(0,0);
         })
         .catch(err => {
           console.error(err);
-          setStatus('<strong>Article not found.</strong> Looked for <code>'+url+'</code>. Make sure the file exists and the name is exact (case-sensitive).');
+          setStatus('<strong>Article not found.</strong> Looked for <code>'+url.replace(/\?.+$/,'')+'</code>. Check the file path and name (case-sensitive).');
           target.innerHTML = '';
         });
     })();
