@@ -9,8 +9,32 @@
   <style>
     :root{--brand-navy:#1a3e5c;--brand-gold:#f4b400;--bg:#f4f6f8;--text:#222;--card:#fff;}
     body{font-family:'Segoe UI',Tahoma,Verdana,sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.7;font-size:18px}
-    header{background:var(--brand-navy);color:#fff;text-align:center;padding:26px 16px}
-    header h1{margin:0;font-size:2rem}
+
+    /* Header bar */
+    header.navbar{
+      background:var(--brand-navy);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 20px;
+    }
+    header.navbar a{
+      color:#fff;
+      text-decoration:none;
+      font-weight:bold;
+    }
+    header.navbar a:hover{
+      color:var(--brand-gold);
+    }
+    header.navbar .brand{
+      font-size:1.4rem;
+    }
+    header.navbar nav a{
+      margin-left:20px;
+      font-size:1rem;
+    }
+
     main{max-width:900px;margin:30px auto;padding:0 16px}
     .wrap{background:var(--card);padding:26px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
     h1,h2,h3{color:var(--brand-navy)}
@@ -21,9 +45,16 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>Credit Insights</h1>
+  <!-- Sticky company header -->
+  <header class="navbar">
+    <a href="index.html" class="brand">Clear Credit Insights</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="insights.html">Credit Insights</a>
+      <a href="contact.html">Contact</a>
+    </nav>
   </header>
+
   <main>
     <div id="status" class="msg" role="status">Loading…</div>
     <div class="wrap">
@@ -40,7 +71,6 @@
       function getParam(name){ try{ return new URL(location.href).searchParams.get(name); }catch(e){ return null; } }
       function setStatus(html){ document.getElementById('status').innerHTML = html; }
 
-      // Tiny front-matter parser (keeps title/summary, ignores date)
       function parseFrontMatter(md){
         const m = md.match(/^---([\s\S]*?)---\s*/);
         if(!m){ return { fm:{}, body: md }; }
