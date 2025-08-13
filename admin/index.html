@@ -5,66 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Content Manager</title>
 
-  <!-- Netlify Identity (login) -->
+  <!-- Netlify Identity -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- Manual init BEFORE CMS -->
+  <script>window.CMS_MANUAL_INIT = true;</script>
+
+  <!-- Decap CMS (pinned) -->
+  <script src="https://cdn.jsdelivr.net/npm/decap-cms@2.15.1/dist/decap-cms.js"></script>
 
   <style>
     #status{font-family:system-ui,Segoe UI,Roboto,Arial;margin:16px;padding:12px;border-left:4px solid #f4b400;background:#fff}
-    a.btn{display:inline-block;margin:8px 0;padding:8px 12px;border-radius:8px;text-decoration:none;border:1px solid #888}
   </style>
 </head>
 <body>
   <div id="status">Booting…</div>
-  <a class="btn" href="#" id="login">Open Login</a>
-
   <script>
-    // Small status helper
-    const setStatus = (m)=>{ const el=document.getElementById('status'); if(el) el.innerHTML=m; };
+    const setStatus = m => { const el=document.getElementById('status'); if(el) el.innerHTML=m; };
 
-    // Identity helpers
+    // Identity login prompt
     if (window.netlifyIdentity){
-      document.getElementById('login').onclick = (e)=>{ e.preventDefault(); netlifyIdentity.open('login'); };
-      netlifyIdentity.on('init', (user)=>{ if(!user) netlifyIdentity.open('login'); });
+      netlifyIdentity.on('init', u => { if(!u) netlifyIdentity.open('login'); });
       netlifyIdentity.on('login', ()=>location.reload());
       netlifyIdentity.on('logout', ()=>location.reload());
     }
 
-    // Try loading Decap CMS from multiple CDNs (some blockers kill one but not the others)
-    const sources = [
-      "https://cdn.jsdelivr.net/npm/decap-cms@2.15.1/dist/decap-cms.js",
-      "https://unpkg.com/decap-cms@2.15.1/dist/decap-cms.js",
-      "https://cdn.jsdelivr.net/npm/decap-cms/dist/decap-cms.js" // final fallback (latest)
-    ];
-
-    function loadScript(url){
-      return new Promise((resolve, reject)=>{
-        const s = document.createElement('script');
-        s.src = url; s.async = true; s.onload = resolve; s.onerror = ()=>reject(new Error('Failed '+url));
-        document.head.appendChild(s);
-      });
-    }
-
-    (async function boot(){
-      setStatus('Loading CMS…');
-      let loaded = false, lastErr = null;
-      for (const url of sources){
+    // Init CMS with inline config (no /admin/config.yml fetch)
+    (function wait(i=1){
+      if (window.CMS && typeof CMS.init==='function'){
+        setStatus('CMS loaded. Initializing…');
         try {
-          await loadScript(url);
-          if (window.CMS && typeof window.CMS.init === 'function'){ loaded = true; setStatus('CMS loaded. Fetching /admin/config.yml …'); break; }
-        } catch(err){ lastErr = err; }
-      }
-      if (!loaded){
-        setStatus('Could not load CMS from any CDN. If you use a content blocker, allow third-party scripts for this page and reload.<br><small>'+ (lastErr ? lastErr.message : '') +'</small>');
+          CMS.init({
+            config: {
+              backend: { name: 'git-gateway', branch: 'main' },  // change to 'master' if your repo uses master
+              media_folder: 'assets/uploads',
+              public_folder: '/assets/uploads',
+              collections: [{
+                name: 'articles',
+                label: 'Articles',
+                folder: 'articles',
+                create: true,
+                slug: '{{slug}}',
+                extension: 'md',
+                preview_path: 'article.html?post={{slug}}',
+                fields: [
+                  { label: 'Title', name: 'title', widget: 'string' },
+                  { label: 'Summary', name: 'summary', widget: 'text' },
+                  { label: 'Body', name: 'body', widget: 'markdown' }
+                ]
+              }]
+            }
+          });
+          setStatus('CMS initialized. If the UI is blank, ensure Git Gateway is enabled and authorized to your repo.');
+        } catch(e){
+          setStatus('Init error: ' + (e?.message || e));
+        }
         return;
       }
-      // Surface runtime errors (e.g., Git Gateway)
-      try{
-        CMS.registerEventListener({
-          name: 'error',
-          handler: ({ error }) => setStatus('CMS error: ' + (error?.message || String(error)))
-        });
-      }catch(e){}
-      // Nothing else: Decap auto-reads /admin/config.yml now
+      if (i>40) return setStatus('CMS failed to load (CDN blocked?). Try another browser/network.');
+      setTimeout(()=>wait(i+1),150);
     })();
   </script>
 </body>
