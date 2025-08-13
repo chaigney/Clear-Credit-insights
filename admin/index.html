@@ -6,29 +6,18 @@
   <title>Content Manager</title>
 </head>
 <body>
-  <!-- Netlify Identity widget -->
+  <!-- Load Netlify Identity widget and Decap CMS -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <!-- Decap CMS app -->
   <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
 
   <script>
-    // Auto-open the Netlify Identity login/signup if no user is logged in
+    // If not logged in, open the login/signup panel
     if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init', function(user) {
-        if (!user) {
-          // Show login/signup panel
-          window.netlifyIdentity.open('login');
-        }
-      });
-      // After login, reload /admin so CMS gets the token
-      window.netlifyIdentity.on('login', function() {
-        window.location.href = '/admin/';
-      });
+      window.netlifyIdentity.on('init', (user) => { if (!user) window.netlifyIdentity.open('login'); });
+      window.netlifyIdentity.on('login', () => window.location.reload());
     }
   </script>
 
-  <!-- Fallback link in case the widget is blocked by extensions -->
   <p style="font-family:system-ui,Segoe UI,Roboto,Arial;margin:20px;">
     If the login panel doesn’t appear, <a href="https://identity.netlify.com/login?site=https://creditinsight.netlify.app">click here to log in or sign up</a>.
   </p>
