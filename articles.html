@@ -1,57 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Credit Insights — The 5 Cs of Credit</title>
-    <meta name="description" content="Understand the 5 Cs of Credit—Character, Capacity, Capital, Collateral, and Conditions—for stronger commercial underwriting decisions.">
-    <style>
-        :root{
-            --brand-navy:#1a3e5c;
-            --brand-gold:#f4b400;
-            --bg:#f4f6f8;
-            --text:#222;
-            --card:#fff;
-        }
-        html{scroll-behavior:smooth}
-        body{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.7;font-size:18px}
-        header{background:var(--brand-navy);color:#fff;text-align:center;padding:26px 16px}
-        header h1{margin:0;font-size:2rem}
-        header p{margin:6px 0 0 0;opacity:.95}
-        main{max-width:900px;margin:32px auto;padding:0 16px}
-        article{background:var(--card);padding:26px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
-        h2{color:var(--brand-navy);margin-top:0}
-        h3{color:var(--brand-navy);margin-top:22px}
-        a.back{display:inline-block;margin:16px 0 0 0;text-decoration:none;font-weight:700;color:var(--brand-navy);border-bottom:2px solid transparent}
-        a.back:hover{border-color:var(--brand-gold)}
-        footer{background:var(--brand-navy);color:#fff;text-align:center;padding:22px;margin-top:40px}
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Credit Insights — Article</title>
+  <meta name="description" content="Article detail - Clear Credit Insights">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    :root{--brand-navy:#1a3e5c;--brand-gold:#f4b400;--bg:#f4f6f8;--text:#222;--card:#fff;}
+    body{font-family:'Segoe UI',Tahoma,Verdana,sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.7;font-size:18px}
+    header{background:var(--brand-navy);color:#fff;text-align:center;padding:26px 16px}
+    header h1{margin:0;font-size:2rem}
+    main{max-width:900px;margin:30px auto;padding:0 16px}
+    article{background:var(--card);padding:26px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+    h1,h2,h3{color:var(--brand-navy)}
+    .msg{margin:16px 0;padding:12px;border-left:4px solid var(--brand-gold);background:#fff}
+    a.back{display:inline-block;margin:16px 0;text-decoration:none;font-weight:800;color:var(--brand-navy)}
+    a.back:hover{color:var(--brand-gold)}
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Credit Insights</h1>
-        <p>Your resource for commercial credit best practices</p>
-    </header>
-    <main>
-        <article>
-            <h2>The 5 Cs of Credit: A Foundation for Sound Underwriting</h2>
-            <p>The 5 Cs of Credit—<strong>Character, Capacity, Capital, Collateral, and Conditions</strong>—are the cornerstone of commercial lending. Consistently applying these pillars yields clear, defensible decisions and reduces surprises in portfolio performance.</p>
-            <h3>1) Character</h3>
-            <p>Assess ownership and management credibility: repayment history, legal filings, references, governance, and transparency. Red flags include frequent ownership changes, unresolved liens, or poor communication.</p>
-            <h3>2) Capacity</h3>
-            <p>Evaluate ability to repay via <strong>UCA cash flow</strong>, DSCR, and sensitivity to margin or revenue compression. Model base, downside, and severe cases; test covenants (e.g., minimum DSCR, leverage caps) against each case.</p>
-            <h3>3) Capital</h3>
-            <p>Measure the borrower’s “skin in the game.” Review tangible net worth, leverage, and subordination agreements. Strong capitalization absorbs volatility and aligns incentives.</p>
-            <h3>4) Collateral</h3>
-            <p>Define secondary repayment sources and liquidation value. Align LTV/advance rates with asset quality and market depth. Document appraisals, inspection frequency, and collateral controls (e.g., ABL borrowing bases).</p>
-            <h3>5) Conditions</h3>
-            <p>Factor in sector trends, cyclicality, competitive dynamics, and regulatory or macroeconomic risks. Ensure loan purpose/structure (tenor, amortization, pricing) matches cash cycle and asset life.</p>
-            <p><em>Takeaway:</em> A disciplined 5Cs framework, combined with timely financials, industry benchmarking, and transparent borrower dialogue, produces faster approvals and fewer surprises.</p>
-        </article>
-        <a class="back" href="index.html">← Back to Clear Credit Insights</a>
-    </main>
-    <footer>
-        <p>&copy; 2025 Clear Credit Insights. All rights reserved.</p>
-    </footer>
+  <header>
+    <h1>Credit Insights</h1>
+  </header>
+  <main>
+    <div id="status" class="msg" role="status">Loading…</div>
+    <article id="content" aria-live="polite"></article>
+    <a class="back" href="insights.html">← Back to all articles</a>
+    <noscript><div class="msg">This page requires JavaScript to load the article.</div></noscript>
+  </main>
+  <script>
+    (function(){
+      // Helpers
+      function getParam(name){ try{ return new URL(location.href).searchParams.get(name) }catch(e){ return null } }
+      function stripFrontMatter(md){
+        // remove leading '--- ... ---' block if present
+        return md.replace(/^---[\\s\\S]*?---\\s*/, '');
+      }
+      function fallbackMarkdown(md){
+        // very minimal fallback: escape HTML and preserve spacing
+        const esc = md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        return '<pre>'+esc+'</pre>';
+      }
+      function setStatus(html){ document.getElementById('status').innerHTML = html; }
+
+      const slug = getParam('post');
+      const target = document.getElementById('content');
+
+      if(!slug){
+        setStatus('<strong>Article not specified.</strong> Try: <code>article.html?post=5-cs-of-credit</code>');
+        return;
+      }
+
+      const url = 'articles/' + slug + '.md';
+      setStatus('Fetching <code>'+url+'</code> …');
+
+      fetch(url, {cache:'no-store'})
+        .then(r => {
+          if(!r.ok) throw new Error('HTTP '+r.status+' for '+url);
+          return r.text();
+        })
+        .then(md => {
+          setStatus('Rendering article…');
+          const bodyOnly = stripFrontMatter(md || '');
+          if (window.marked && typeof window.marked.parse === 'function') {
+            target.innerHTML = window.marked.parse(bodyOnly);
+          } else {
+            target.innerHTML = fallbackMarkdown(bodyOnly);
+            setStatus('<strong>Note:</strong> Markdown library not loaded; showing plain text.');
+            return;
+          }
+          setStatus(''); // clear status
+          window.scrollTo(0,0);
+        })
+        .catch(err => {
+          console.error(err);
+          setStatus('<strong>Article not found.</strong> Looked for <code>'+url+'</code>. Make sure the file exists and the name is exact (case-sensitive).');
+          target.innerHTML = '';
+        });
+    })();
+  </script>
 </body>
 </html>
