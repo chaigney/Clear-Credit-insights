@@ -1,40 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Credit Insights — Article</title>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <style>
-    :root{--brand-navy:#1a3e5c;--brand-gold:#f4b400;--bg:#f4f6f8;--text:#222;--card:#fff;}
-    body{font-family:'Segoe UI',Tahoma,Verdana,sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.7;font-size:18px}
-    header{background:var(--brand-navy);color:#fff;text-align:center;padding:26px 16px}
-    main{max-width:900px;margin:30px auto;padding:0 16px}
-    article{background:var(--card);padding:26px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
-    h1,h2,h3{color:var(--brand-navy)}
-    a.back{display:inline-block;margin:16px 0;text-decoration:none;font-weight:800;color:var(--brand-navy)}
-    a.back:hover{color:var(--brand-gold)}
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Credit Insights</h1>
-  </header>
-  <main>
-    <article id="content">Loading…</article>
-    <a class="back" href="insights.html">← Back to all articles</a>
-  </main>
-  <script>
-    function getParam(name){const u=new URL(location.href);return u.searchParams.get(name)}
-    const slug = getParam('post');
-    const target = document.getElementById('content');
-    if(!slug){target.innerHTML = '<p>Article not specified.</p>';}
-    else{
-      fetch('articles/' + slug + '.md')
-        .then(r => r.ok ? r.text() : Promise.reject('Not found'))
-        .then(md => { target.innerHTML = marked.parse(md); })
-        .catch(() => { target.innerHTML = '<p>Article not found.</p>'; });
-    }
-  </script>
-</body>
-</html>
+<script>
+  // Helper: get ?post=slug
+  function getParam(name){const u=new URL(location.href);return u.searchParams.get(name)}
+  // Helper: remove leading YAML front-matter --- ... ---
+  function stripFrontMatter(md){
+    // Matches a leading block starting with --- and ending with the next ---
+    return md.replace(/^---[\s\S]*?---\s*/,'');
+  }
+
+  const slug = getParam('post');
+  const target = document.getElementById('content');
+
+  if(!slug){
+    target.innerHTML = '<p>Article not specified.</p>';
+  } else {
+    fetch('articles/' + slug + '.md')
+      .then(r => r.ok ? r.text() : Promise.reject('Not found'))
+      .then(md => {
+        const bodyOnly = stripFrontMatter(md);
+        target.innerHTML = marked.parse(bodyOnly);
+        window.scrollTo(0,0);
+      })
+      .catch(() => {
+        target.innerHTML = '<p>Article not found.</p>';
+      });
+  }
+</script>
