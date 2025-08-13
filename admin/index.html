@@ -6,20 +6,56 @@
   <title>Content Manager</title>
 </head>
 <body>
-  <!-- Load Netlify Identity widget and Decap CMS -->
+  <!-- Identity widget + CMS app -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
 
-  <script>
-    // If not logged in, open the login/signup panel
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init', (user) => { if (!user) window.netlifyIdentity.open('login'); });
-      window.netlifyIdentity.on('login', () => window.location.reload());
-    }
-  </script>
+  <!-- Visible fallback controls -->
+  <div style="font-family:system-ui,Segoe UI,Roboto,Arial;margin:24px;">
+    <button id="openLogin" style="padding:10px 16px;border-radius:8px;cursor:pointer">
+      Open Login / Sign up
+    </button>
+    <span id="userState" style="margin-left:12px;color:#555"></span>
+  </div>
 
-  <p style="font-family:system-ui,Segoe UI,Roboto,Arial;margin:20px;">
-    If the login panel doesn’t appear, <a href="https://identity.netlify.com/login?site=https://creditinsight.netlify.app">click here to log in or sign up</a>.
-  </p>
+  <script>
+    // Force login panel if no user, and show a manual button too
+    if (window.netlifyIdentity) {
+      netlifyIdentity.on('init', (user) => {
+        document.getElementById('userState').textContent = user ? 'Signed in' : 'Signed out';
+        if (!user) netlifyIdentity.open('login');
+      });
+      netlifyIdentity.on('login', () => location.reload());
+      netlifyIdentity.on('logout', () => location.reload());
+      document.getElementById('openLogin').onclick = () => netlifyIdentity.open('login');
+    }
+
+    // MANUAL INIT so the CMS doesn't fetch config.yml (avoids the spinner)
+    window.CMS_MANUAL_INIT = true;
+    window.addEventListener('DOMContentLoaded', function () {
+      const cfg = {
+        backend: { name: 'git-gateway', branch: 'main' }, // change to 'master' if your repo default branch is master
+        media_folder: 'assets/uploads',
+        public_folder: '/assets/uploads',
+        collections: [
+          {
+            name: 'articles',
+            label: 'Articles',
+            folder: 'articles',
+            create: true,
+            slug: '{{slug}}',
+            extension: 'md',
+            preview_path: 'article.html?post={{slug}}',
+            fields: [
+              { label: 'Title', name: 'title', widget: 'string' },
+              { label: 'Summary', name: 'summary', widget: 'text' },
+              { label: 'Body', name: 'body', widget: 'markdown' },
+            ]
+          }
+        ]
+      };
+      CMS.init({ config: cfg });
+    });
+  </script>
 </body>
 </html>
