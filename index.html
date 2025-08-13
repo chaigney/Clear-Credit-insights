@@ -21,11 +21,9 @@
   <meta name="twitter:description" content="Underwriting, loan review, and portfolio risk services. Fast, examiner-ready analysis.">
   <meta name="twitter:image" content="https://creditinsight.netlify.app/og-image.jpg">
 
-  <!-- Preconnect (perf) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-
-  <!-- Brand Font (system stack fallback keeps perf solid) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
 
   <style>
@@ -55,20 +53,20 @@
     a:hover{text-decoration:underline}
     img{max-width:100%;height:auto;display:block}
 
-    /* Layout */
+    /* Header (static) */
     header{background:var(--brand-navy);color:#fff}
     .wrap{max-width:var(--max-w);margin:0 auto;padding:0 20px}
-    .topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
-    .brand{display:flex;align-items:center;gap:14px}
-    .brand img{height:44px;width:auto;border-radius:8px}
-    .brand-name{margin:0;font-size:1.3rem;font-weight:800;letter-spacing:.2px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 0} /* tighter */
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand img{height:40px;width:auto;border-radius:8px}
+    .brand-name{margin:0;font-size:1.15rem;font-weight:800;letter-spacing:.2px}
 
-    /* Nav */
-    .nav{display:flex;gap:18px;align-items:center}
+    /* Nav simplified */
+    .nav{display:flex;gap:14px;align-items:center} /* less gap */
     .nav a{color:#fff;font-weight:600;border-bottom:2px solid transparent;padding-bottom:2px}
     .nav a:hover{border-color:var(--brand-gold)}
-    .login-btn{background:var(--brand-gold);color:var(--brand-navy);padding:10px 14px;border-radius:999px;font-weight:800}
-    .menu-btn{display:none;background:transparent;border:0;color:#fff;font-size:1.1rem}
+    .login-btn{background:var(--brand-gold);color:var(--brand-navy);padding:8px 12px;border-radius:999px;font-weight:800;font-size:.95rem} /* smaller */
+    .menu-btn{display:none;background:transparent;border:0;color:#fff;font-size:1rem}
     @media (max-width:860px){
       .nav{display:none}
       .menu-btn{display:inline-flex;align-items:center;gap:8px}
@@ -125,18 +123,12 @@
       background:var(--brand-gold);color:var(--brand-navy);font-weight:800
     }
 
-    /* Testimonial */
-    .quote{
-      background:#0f2740;color:#e6eef7;border-left:4px solid var(--brand-gold);
-      padding:20px;border-radius:8px;font-style:italic
-    }
-
     /* FAQ */
     details{background:var(--card);padding:14px 16px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.06)}
     details+details{margin-top:10px}
     summary{cursor:pointer;color:var(--brand-navy-2);font-weight:700}
 
-    /* Contact / form */
+    /* Forms */
     form{
       background:var(--card);padding:22px;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.06)
     }
@@ -150,55 +142,15 @@
     .form-row{display:grid;gap:12px}
     @media(min-width:720px){.form-row{grid-template-columns:1fr 1fr}}
 
-    /* Sticky CTA footer (mobile) */
-    .sticky-cta{
-      display:none;position:fixed;left:0;right:0;bottom:0;background:rgba(26,62,92,.98);padding:10px;z-index:1000
-    }
-    .sticky-cta .wrap{display:flex;gap:10px;justify-content:center}
-    .sticky-cta a{color:var(--brand-navy);background:var(--brand-gold);padding:12px 16px;border-radius:8px;font-weight:800}
-    @media(max-width:860px){.sticky-cta{display:block}}
-
     footer{
       background:var(--brand-navy);color:#fff;padding:28px 0;margin-top:40px;font-size:.95rem
     }
     footer a{color:#fff}
     .footer-links{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
   </style>
-
-  <!-- JSON-LD: Organization + Service -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"Clear Credit Insights",
-    "url":"https://creditinsight.netlify.app/",
-    "logo":"https://creditinsight.netlify.app/logo-clear-credit-insights.png",
-    "sameAs": [],
-    "contactPoint": [{
-      "@type":"ContactPoint",
-      "contactType":"Sales",
-      "email":"sales@clearcreditinsights.com"
-    }]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"ProfessionalService",
-    "name":"Outsourced Commercial Credit & Loan Review",
-    "areaServed":"US",
-    "serviceType":[
-      "Commercial loan underwriting",
-      "Independent loan review",
-      "Portfolio stress testing",
-      "Credit policy consulting"
-    ],
-    "provider":"Clear Credit Insights"
-  }
-  </script>
 </head>
 <body>
-  <!-- Header / Nav -->
+  <!-- Header / Nav (static) -->
   <header>
     <div class="wrap topbar" role="navigation" aria-label="Primary">
       <a class="brand" href="/" aria-label="Clear Credit Insights home">
@@ -208,7 +160,6 @@
       <nav class="nav" aria-label="Main">
         <a href="#services">Services</a>
         <a href="#process">Process</a>
-        <a href="#results">Results</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
         <a href="https://portal.clearcreditinsights.com" class="login-btn">Client Login</a>
@@ -218,7 +169,6 @@
     <div id="mobileNav" class="mobile-nav" role="navigation" aria-label="Mobile">
       <a href="#services">Services</a>
       <a href="#process">Process</a>
-      <a href="#results">Results</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
       <a href="https://portal.clearcreditinsights.com" class="login-btn">Client Login</a>
@@ -234,11 +184,11 @@
         <a class="btn" href="#contact">Request a Quote</a>
         <a class="btn secondary" href="https://calendly.com/your-calendly/15min" target="_blank" rel="noopener">Book a 15‑Minute Consultation</a>
       </div>
-      <div class="kickers">Turnarounds in as little as <strong>5 business days</strong> • Examiner‑friendly reports • Flexible per‑loan or per‑engagement pricing</div>
+      <div class="kickers">Turnarounds in as little as <strong>5 business days</strong> • Examiner‑friendly reports • Flexible engagement models</div>
     </div>
   </section>
 
-  <!-- Services -->
+  <!-- Services (no pricing) -->
   <section id="services">
     <div class="wrap">
       <h2>Services Built for Community & Regional Banks</h2>
@@ -247,38 +197,14 @@
         <div class="card">
           <h3>Commercial Loan Underwriting</h3>
           <p>End‑to‑end credit memos (C&I, CRE, SBA, construction): spreads, ratios, UCA & global cash flow, peer benchmarking, and risk rating with justification.</p>
-          <p><strong>From $500–$2,500 per loan</strong> based on complexity.</p>
         </div>
         <div class="card">
           <h3>Independent Loan Review</h3>
           <p>Annual/quarterly reviews, risk rating validation, policy compliance, trend analysis, and stress testing with board‑ready reporting.</p>
-          <p><strong>Flat‑fee engagements from $7,500</strong>, scoped to portfolio size.</p>
         </div>
         <div class="card">
           <h3>Credit Advisory & Training</h3>
           <p>Credit policy drafting/review, CECL/ALLL support, examiner remediation, and hands‑on training for junior analysts and lenders.</p>
-          <p><strong>$150–$250/hr</strong> or packaged workshops.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About / Differentiators -->
-  <section id="about">
-    <div class="wrap">
-      <h2>Why Banks Choose Clear Credit Insights</h2>
-      <div class="grid grid-3">
-        <div class="card">
-          <h3>Regulator‑Trusted</h3>
-          <p>Workpapers and reports designed to satisfy OCC, FDIC, and FRB expectations—clear risk ratings and actionable findings.</p>
-        </div>
-        <div class="card">
-          <h3>Senior Talent</h3>
-          <p>Led by former credit officers, loan review managers, and examiners with deep C&I/CRE/SBA experience.</p>
-        </div>
-        <div class="card">
-          <h3>Speed & Flexibility</h3>
-          <p>Scale up during busy seasons; keep costs aligned with loan volume. Fast SLAs with rigorous QC.</p>
         </div>
       </div>
     </div>
@@ -298,38 +224,13 @@
     </div>
   </section>
 
-  <!-- Results / Social proof -->
-  <section id="results">
-    <div class="wrap">
-      <h2>Results We Deliver</h2>
-      <div class="grid grid-3">
-        <div class="card">
-          <h3>Backlog Cleared</h3>
-          <p>Reduced underwriting backlog by <strong>40%</strong> for a $1.8B bank during a growth surge.</p>
-        </div>
-        <div class="card">
-          <h3>Exam Findings Resolved</h3>
-          <p>Cleared loan review exam findings for a $900M bank within <strong>60 days</strong>.</p>
-        </div>
-        <div class="card">
-          <h3>Faster Credit Memos</h3>
-          <p>Cut average memo prep time from <strong>12 days</strong> to <strong>5 days</strong> across multiple clients.</p>
-        </div>
-      </div>
-      <div class="quote" aria-label="Testimonial">
-        “Clear Credit Insights helped us meet loan review deadlines ahead of schedule; examiners praised the thoroughness.”
-        <br>— <em>SVP, Regional Bank</em>
-      </div>
-    </div>
-  </section>
-
   <!-- FAQ -->
   <section id="faq">
     <div class="wrap">
       <h2>FAQ</h2>
       <details>
         <summary>How do you handle security and confidentiality?</summary>
-        <p>We execute an NDA, use a secure portal for file exchange, implement least‑privilege access, and provide a vendor due‑diligence pack on request (policy summaries, insurance, SOC/controls).</p>
+        <p>We execute an NDA, use a secure portal for file exchange, implement least‑privilege access, and provide a vendor due‑diligence pack on request.</p>
       </details>
       <details>
         <summary>Can you work in our template and systems?</summary>
@@ -337,11 +238,11 @@
       </details>
       <details>
         <summary>What are typical turnaround times?</summary>
-        <p>Standard files in 5 business days, complex/structured credits 7–10 business days. Rush options available.</p>
+        <p>Standard files in 5 business days; complex/structured credits in 7–10 business days. Rush options available.</p>
       </details>
       <details>
-        <summary>How is pricing structured?</summary>
-        <p>Per‑loan flat fees by complexity, flat‑fee loan review engagements by scope, or fractional analyst retainers. We can provide a quote after a short discovery call.</p>
+        <summary>How do you price engagements?</summary>
+        <p>We’ll scope the work during a brief discovery call and provide a transparent quote aligned to volume and complexity.</p>
       </details>
     </div>
   </section>
@@ -429,14 +330,6 @@
     </div>
   </footer>
 
-  <!-- Sticky CTA (mobile) -->
-  <div class="sticky-cta" aria-hidden="true">
-    <div class="wrap">
-      <a href="#contact">Request a Quote</a>
-      <a href="https://calendly.com/your-calendly/15min" target="_blank" rel="noopener">Book a Call</a>
-    </div>
-  </div>
-
   <!-- Minimal JS: mobile nav toggle -->
   <script>
     const btn = document.querySelector('.menu-btn');
@@ -451,3 +344,4 @@
   </script>
 </body>
 </html>
+
