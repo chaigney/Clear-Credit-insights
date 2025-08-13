@@ -4,29 +4,67 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Content Manager</title>
+
+  <!-- Netlify Identity (login) -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/decap-cms@2.15.1/dist/decap-cms.js"></script>
+
   <style>
     #status{font-family:system-ui,Segoe UI,Roboto,Arial;margin:16px;padding:12px;border-left:4px solid #f4b400;background:#fff}
+    a.btn{display:inline-block;margin:8px 0;padding:8px 12px;border-radius:8px;text-decoration:none;border:1px solid #888}
   </style>
 </head>
 <body>
   <div id="status">Booting…</div>
+  <a class="btn" href="#" id="login">Open Login</a>
+
   <script>
-    function setStatus(m){ const n=document.getElementById('status'); if(n) n.innerHTML=m; }
+    // Small status helper
+    const setStatus = (m)=>{ const el=document.getElementById('status'); if(el) el.innerHTML=m; };
+
+    // Identity helpers
     if (window.netlifyIdentity){
-      netlifyIdentity.on('init', u => { if(!u) netlifyIdentity.open('login'); });
-      netlifyIdentity.on('login', () => location.reload());
-      netlifyIdentity.on('logout', () => location.reload());
+      document.getElementById('login').onclick = (e)=>{ e.preventDefault(); netlifyIdentity.open('login'); };
+      netlifyIdentity.on('init', (user)=>{ if(!user) netlifyIdentity.open('login'); });
+      netlifyIdentity.on('login', ()=>location.reload());
+      netlifyIdentity.on('logout', ()=>location.reload());
     }
-    (function wait(i=1){
-      if (window.CMS && typeof CMS.init==='function'){
-        setStatus('CMS loaded. Fetching /admin/config.yml …');
-        try{ CMS.registerEventListener({name:'error',handler:({error})=>setStatus('CMS error: '+(error?.message||String(error))) }); }catch(e){}
+
+    // Try loading Decap CMS from multiple CDNs (some blockers kill one but not the others)
+    const sources = [
+      "https://cdn.jsdelivr.net/npm/decap-cms@2.15.1/dist/decap-cms.js",
+      "https://unpkg.com/decap-cms@2.15.1/dist/decap-cms.js",
+      "https://cdn.jsdelivr.net/npm/decap-cms/dist/decap-cms.js" // final fallback (latest)
+    ];
+
+    function loadScript(url){
+      return new Promise((resolve, reject)=>{
+        const s = document.createElement('script');
+        s.src = url; s.async = true; s.onload = resolve; s.onerror = ()=>reject(new Error('Failed '+url));
+        document.head.appendChild(s);
+      });
+    }
+
+    (async function boot(){
+      setStatus('Loading CMS…');
+      let loaded = false, lastErr = null;
+      for (const url of sources){
+        try {
+          await loadScript(url);
+          if (window.CMS && typeof window.CMS.init === 'function'){ loaded = true; setStatus('CMS loaded. Fetching /admin/config.yml …'); break; }
+        } catch(err){ lastErr = err; }
+      }
+      if (!loaded){
+        setStatus('Could not load CMS from any CDN. If you use a content blocker, allow third-party scripts for this page and reload.<br><small>'+ (lastErr ? lastErr.message : '') +'</small>');
         return;
       }
-      if (i>40) return setStatus('CMS failed to load (CDN blocked?). Try another browser/network.');
-      setTimeout(()=>wait(i+1),150);
+      // Surface runtime errors (e.g., Git Gateway)
+      try{
+        CMS.registerEventListener({
+          name: 'error',
+          handler: ({ error }) => setStatus('CMS error: ' + (error?.message || String(error)))
+        });
+      }catch(e){}
+      // Nothing else: Decap auto-reads /admin/config.yml now
     })();
   </script>
 </body>
