@@ -4,13 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Content Manager</title>
+
+  <!-- 1) Netlify Identity widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- 2) Tell Decap we will initialize manually (MUST be BEFORE the CMS script) -->
+  <script>window.CMS_MANUAL_INIT = true;</script>
+
+  <!-- 3) Decap CMS app -->
+  <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
 </head>
 <body>
-  <!-- Identity widget + CMS app -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
-
-  <!-- Visible fallback controls -->
+  <!-- Small helper UI -->
   <div style="font-family:system-ui,Segoe UI,Roboto,Arial;margin:24px;">
     <button id="openLogin" style="padding:10px 16px;border-radius:8px;cursor:pointer">
       Open Login / Sign up
@@ -19,7 +24,7 @@
   </div>
 
   <script>
-    // Force login panel if no user, and show a manual button too
+    // Identity login helpers
     if (window.netlifyIdentity) {
       netlifyIdentity.on('init', (user) => {
         document.getElementById('userState').textContent = user ? 'Signed in' : 'Signed out';
@@ -30,11 +35,10 @@
       document.getElementById('openLogin').onclick = () => netlifyIdentity.open('login');
     }
 
-    // MANUAL INIT so the CMS doesn't fetch config.yml (avoids the spinner)
-    window.CMS_MANUAL_INIT = true;
-    window.addEventListener('DOMContentLoaded', function () {
+    // 4) Manual init config — avoids fetching /admin/config.yml
+    (function () {
       const cfg = {
-        backend: { name: 'git-gateway', branch: 'main' }, // change to 'master' if your repo default branch is master
+        backend: { name: 'git-gateway', branch: 'main' }, // change to 'master' if your repo default is master
         media_folder: 'assets/uploads',
         public_folder: '/assets/uploads',
         collections: [
@@ -47,15 +51,15 @@
             extension: 'md',
             preview_path: 'article.html?post={{slug}}',
             fields: [
-              { label: 'Title', name: 'title', widget: 'string' },
-              { label: 'Summary', name: 'summary', widget: 'text' },
-              { label: 'Body', name: 'body', widget: 'markdown' },
+              { label: 'Title',   name: 'title',   widget: 'string'   },
+              { label: 'Summary', name: 'summary', widget: 'text'     },
+              { label: 'Body',    name: 'body',    widget: 'markdown' },
             ]
           }
         ]
       };
       CMS.init({ config: cfg });
-    });
+    })();
   </script>
 </body>
 </html>
