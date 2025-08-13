@@ -3,129 +3,150 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Credit Insights — Article</title>
-  <meta name="description" content="Article detail - Clear Credit Insights">
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <title>Article — Clear Credit Insights</title>
+  <meta name="description" content="Commercial credit underwriting insights."/>
   <style>
-    :root{--brand-navy:#1a3e5c;--brand-gold:#f4b400;--bg:#f4f6f8;--text:#222;--card:#fff;}
+    :root{--brand-navy:#1a3e5c;--brand-navy-2:#2a5787;--brand-gold:#f4b400;--text:#222;--muted:#5b6b7a;--bg:#f4f6f8;--card:#fff}
     body{font-family:'Segoe UI',Tahoma,Verdana,sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.7;font-size:18px}
 
-    /* Header bar */
-    header.navbar{
-      background:var(--brand-navy);
-      color:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:14px 20px;
-    }
-    header.navbar a{
-      color:#fff;
-      text-decoration:none;
-      font-weight:bold;
-    }
-    header.navbar a:hover{
-      color:var(--brand-gold);
-    }
-    header.navbar .brand{
-      font-size:1.4rem;
-    }
-    header.navbar nav a{
-      margin-left:20px;
-      font-size:1rem;
-    }
+    /* Brand header (non-sticky) + sticky nav like other pages */
+    header.brand-header{background:var(--brand-navy);color:#fff;padding:20px 24px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+    .brand{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center}
+    .brand img{height:110px;width:auto;border-radius:8px}
+    .brand h1{margin:0;font-size:2rem}
+    .tagline{font-size:1.05rem;opacity:.95}
+    .sticky-nav{position:sticky;top:0;z-index:1000;background:var(--brand-navy);box-shadow:0 6px 18px rgba(0,0,0,.12)}
+    .sticky-nav-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:22px;flex-wrap:wrap;align-items:center;padding:10px 16px}
+    .sticky-nav a{color:#fff;text-decoration:none;font-weight:600;font-size:.98rem;padding-bottom:2px;border-bottom:2px solid transparent}
+    .sticky-nav a:hover,.sticky-nav a:focus{border-color:var(--brand-gold)}
+    .login-btn{background:var(--brand-gold);color:var(--brand-navy);padding:10px 16px;border-radius:999px;font-weight:800;text-decoration:none}
 
-    main{max-width:900px;margin:30px auto;padding:0 16px}
-    .wrap{background:var(--card);padding:26px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
-    h1,h2,h3{color:var(--brand-navy)}
-    .summary{margin:10px 0 18px 0;font-style:italic;color:#333}
-    .msg{margin:16px 0;padding:12px;border-left:4px solid var(--brand-gold);background:#fff}
-    a.back{display:inline-block;margin:16px 0;text-decoration:none;font-weight:800;color:var(--brand-navy)}
-    a.back:hover{color:var(--brand-gold)}
+    main{max-width:980px;margin:30px auto;padding:0 16px}
+    .card{background:var(--card);padding:26px;border-radius:14px;box-shadow:0 6px 16px rgba(0,0,0,.08)}
+    .article-title{color:var(--brand-navy);margin:0 0 6px 0;line-height:1.25}
+    .article-summary{color:var(--muted);font-style:italic;margin:6px 0 18px 0}
+    .divider{height:4px;width:60px;background:var(--brand-gold);border-radius:4px;margin:10px 0 20px 0}
+
+    /* Rendered markdown */
+    .content h2{color:var(--brand-navy);margin-top:26px;margin-bottom:12px;line-height:1.3}
+    .content h3{color:var(--brand-navy-2);margin-top:22px;margin-bottom:10px}
+    .content p{margin:14px 0}
+    .content ul,.content ol{margin:12px 0 16px 24px}
+    .content li{margin:8px 0}
+    .content img{max-width:100%;height:auto;border-radius:10px}
+    .back{display:inline-block;margin:0 0 14px 2px;color:var(--brand-navy);text-decoration:none;border-bottom:2px solid var(--brand-gold);font-weight:700}
+
+    footer{background:var(--brand-navy);color:#fff;text-align:center;padding:26px;margin-top:40px}
+    footer a{color:#fff}
   </style>
 </head>
 <body>
-  <!-- Sticky company header -->
-  <header class="navbar">
-    <a href="index.html" class="brand">Clear Credit Insights</a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="insights.html">Credit Insights</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+  <!-- Brand header -->
+  <header class="brand-header" aria-label="Company header">
+    <div class="brand">
+      <img src="logo-clear-credit-insights.png" alt="Clear Credit Insights logo">
+      <div>
+        <h1>Clear Credit Insights</h1>
+        <div class="tagline">Clarity in Credit. Confidence in Decisions.</div>
+      </div>
+    </div>
   </header>
+  <!-- Sticky nav -->
+  <div class="sticky-nav" role="navigation" aria-label="Sticky navigation">
+    <div class="sticky-nav-inner">
+      <a href="index.html#services">Services</a>
+      <a href="insights.html">Credit Insights</a>
+      <a href="index.html#process">Process</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="https://portal.clearcreditinsights.com" class="login-btn">Client Login</a>
+    </div>
+  </div>
 
   <main>
-    <div id="status" class="msg" role="status">Loading…</div>
-    <div class="wrap">
-      <h2 id="title" style="margin-top:0"></h2>
-      <div id="summary" class="summary"></div>
-      <article id="content" aria-live="polite"></article>
+    <a class="back" href="insights.html">← Back to Credit Insights</a>
+    <div class="card">
+      <h2 id="title" class="article-title">Loading…</h2>
+      <div id="summary" class="article-summary"></div>
+      <div class="divider"></div>
+      <article id="content" class="content" aria-live="polite"></article>
     </div>
-    <a class="back" href="insights.html">← Back to all articles</a>
-    <noscript><div class="msg">This page requires JavaScript to load the article.</div></noscript>
   </main>
 
+  <footer>
+    <p>&copy; 2025 Clear Credit Insights. All rights reserved.
+      · <a href="security-compliance.html">Security &amp; Compliance</a>
+      · <a href="vendor-due-diligence.html">Vendor Due Diligence</a>
+      · <a href="privacy.html">Privacy</a>
+      · <a href="terms.html">Terms</a>
+    </p>
+  </footer>
+
+  <!-- Lightweight Markdown parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
   <script>
-    (function(){
-      function getParam(name){ try{ return new URL(location.href).searchParams.get(name); }catch(e){ return null; } }
-      function setStatus(html){ document.getElementById('status').innerHTML = html; }
+    // Get ?post=slug
+    const params = new URLSearchParams(location.search);
+    const slug = (params.get('post') || '').trim();
+    const mdUrl = slug ? `articles/${slug}.md` : '';
 
-      function parseFrontMatter(md){
-        const m = md.match(/^---([\s\S]*?)---\s*/);
-        if(!m){ return { fm:{}, body: md }; }
-        const fmRaw = m[1].trim();
-        const body  = md.slice(m[0].length);
-        const fm = {};
-        fmRaw.split(/\r?\n/).forEach(line=>{
-          const idx = line.indexOf(':');
-          if(idx === -1) return;
-          const key = line.slice(0, idx).trim().toLowerCase();
-          let val = line.slice(idx+1).trim();
-          if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
-            val = val.slice(1, -1);
+    const titleEl = document.getElementById('title');
+    const summaryEl = document.getElementById('summary');
+    const contentEl = document.getElementById('content');
+
+    if (!slug) {
+      titleEl.textContent = 'Article not found';
+      contentEl.innerHTML = '<p>Missing <code>?post=</code> in the URL.</p>';
+    } else {
+      fetch(mdUrl + '?v=' + Date.now(), { cache: 'no-store' })
+        .then(r => { if(!r.ok) throw new Error('Not found'); return r.text(); })
+        .then(text => {
+          // Extract YAML front matter
+          let fm = {};
+          let body = text;
+          const m = /^---\s*([\s\S]*?)\s*---\s*/.exec(text);
+          if (m) {
+            const yaml = m[1];
+            body = text.slice(m[0].length);
+            yaml.split(/\r?\n/).forEach(line => {
+              const idx = line.indexOf(':');
+              if (idx > -1) {
+                const k = line.slice(0, idx).trim();
+                const v = line.slice(idx + 1).trim().replace(/^"(.*)"$/,'$1');
+                fm[k] = v;
+              }
+            });
           }
-          fm[key] = val;
-        });
-        return { fm, body };
-      }
+          // Set title & summary from FM if present
+          if (fm.title) titleEl.textContent = fm.title;
+          if (fm.summary) summaryEl.textContent = fm.summary;
+          else summaryEl.style.display = 'none';
 
-      const slug = getParam('post');
-      const titleEl = document.getElementById('title');
-      const sumEl   = document.getElementById('summary');
-      const content = document.getElementById('content');
+          // Convert markdown to HTML
+          const html = marked.parse(body);
 
-      if(!slug){
-        setStatus('<strong>Article not specified.</strong> Try: <code>article.html?post=5-cs-of-credit</code>');
-        return;
-      }
-
-      const url = 'articles/' + slug + '.md?v=' + Date.now();
-      setStatus('Fetching <code>'+url.replace(/\?.+$/,'')+'</code> …');
-
-      fetch(url, {cache:'no-store'})
-        .then(r => { if(!r.ok) throw new Error('HTTP '+r.status+' for '+url); return r.text(); })
-        .then(md => {
-          const { fm, body } = parseFrontMatter(md || '');
-          titleEl.textContent = fm.title || '';
-          sumEl.textContent   = fm.summary || '';
-          if (window.marked && typeof window.marked.parse === 'function') {
-            content.innerHTML = window.marked.parse(body);
-          } else {
-            const esc = body.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-            content.innerHTML = '<pre>'+esc+'</pre>';
+          // Drop a duplicate leading H1 in the body (common in MD files)
+          const tmp = document.createElement('div');
+          tmp.innerHTML = html;
+          const firstH1 = tmp.querySelector('h1');
+          if (firstH1) {
+            // If it matches the FM title (or even if not), demote to H2
+            const h2 = document.createElement('h2');
+            h2.innerHTML = firstH1.innerHTML;
+            firstH1.replaceWith(h2);
+            // If it exactly equals page title, remove it entirely to avoid repetition
+            if (fm.title && h2.textContent.trim().toLowerCase() === fm.title.trim().toLowerCase()) {
+              h2.remove();
+            }
           }
-          setStatus('');
-          window.scrollTo(0,0);
+          contentEl.innerHTML = tmp.innerHTML;
         })
-        .catch(err => {
-          console.error(err);
-          setStatus('<strong>Article not found.</strong> Looked for <code>'+url.replace(/\?.+$/,'')+'</code>. Check the file path and name (case-sensitive).');
-          titleEl.textContent = '';
-          sumEl.textContent = '';
-          content.innerHTML = '';
+        .catch(() => {
+          titleEl.textContent = 'Article not found';
+          summaryEl.style.display = 'none';
+          contentEl.innerHTML = '<p>We couldn’t find that article. Please return to <a href="insights.html">Credit Insights</a>.</p>';
         });
-    })();
+    }
   </script>
 </body>
 </html>
