@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Security & Compliance — Clear Credit Insights</title>
+  <meta name="description" content="Bank-grade security and compliance controls for outsourced commercial credit analysis."/>
+  <style>
+    :root{--brand-navy:#1a3e5c;--brand-navy-2:#2a5787;--brand-gold:#f4b400;--text:#222;--bg:#f4f6f8;--card:#fff;}
+    body{font-family:'Segoe UI',Tahoma,Verdana,sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.7;font-size:18px}
+    /* Brand header + sticky nav (match site) */
+    header.brand-header{background:var(--brand-navy);color:#fff;padding:20px 24px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+    .brand{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center}
+    .brand img{height:110px;width:auto;border-radius:8px}
+    .brand h1{margin:0;font-size:2rem}
+    .tagline{font-size:1.05rem;opacity:.95}
+    .sticky-nav{position:sticky;top:0;z-index:1000;background:var(--brand-navy);box-shadow:0 6px 18px rgba(0,0,0,.12)}
+    .sticky-nav-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:22px;flex-wrap:wrap;align-items:center;padding:10px 16px}
+    .sticky-nav a{color:#fff;text-decoration:none;font-weight:600;font-size:.98rem;padding-bottom:2px;border-bottom:2px solid transparent}
+    .sticky-nav a:hover,.sticky-nav a:focus{border-color:var(--brand-gold)}
+    .login-btn{background:var(--brand-gold);color:var(--brand-navy);padding:10px 16px;border-radius:999px;font-weight:800;text-decoration:none}
+    /* Page */
+    main{max-width:1000px;margin:30px auto;padding:0 16px}
+    .card{background:#fff;padding:22px;border-radius:12px;box-shadow:0 6px 16px rgba(0,0,0,.08);margin-bottom:18px}
+    h2,h3{color:var(--brand-navy)}
+    ul{margin:0 0 1em 1.2em}
+    code{background:#eef3f8;padding:2px 6px;border-radius:4px}
+    footer{background:var(--brand-navy);color:#fff;text-align:center;padding:26px;margin-top:40px}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="brand-header" aria-label="Company header">
+    <div class="brand">
+      <img src="logo-clear-credit-insights.png" alt="Clear Credit Insights logo">
+      <div>
+        <h1>Clear Credit Insights</h1>
+        <div class="tagline">Clarity in Credit. Confidence in Decisions.</div>
+      </div>
+    </div>
+  </header>
+  <div class="sticky-nav" role="navigation" aria-label="Sticky navigation">
+    <div class="sticky-nav-inner">
+      <a href="index.html#services">Services</a>
+      <a href="insights.html">Credit Insights</a>
+      <a href="index.html#process">Process</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="https://portal.clearcreditinsights.com" class="login-btn">Client Login</a>
+    </div>
+  </div>
+
+  <main>
+    <div class="card">
+      <h2>Security & Compliance Overview</h2>
+      <p>We handle sensitive borrower and portfolio information for banks. Our controls are designed to align with OCC/FDIC expectations and common vendor risk frameworks.</p>
+    </div>
+
+    <div class="card">
+      <h3>Data Hosting & Encryption</h3>
+      <ul>
+        <li><strong>Portal:</strong> Citrix ShareFile (Business/Enterprise) with org subdomain <code>portal.clearcreditinsights.com</code>.</li>
+        <li><strong>Transport:</strong> TLS 1.2+ for all data in transit.</li>
+        <li><strong>At Rest:</strong> AES-256 encryption within ShareFile-managed storage.</li>
+        <li><strong>Backups:</strong> ShareFile native redundancy; critical artifacts mirrored to bank-approved storage when required.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Identity, Access, and MFA</h3>
+      <ul>
+        <li>Mandatory <strong>MFA</strong> for staff and client users.</li>
+        <li><strong>Least-privilege</strong> access by engagement and role; per-client segmented workspaces.</li>
+        <li>Optional <strong>SSO/SAML</strong> for bank personnel upon request.</li>
+        <li>Session timeouts and password complexity policies enforced.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Audit, Logging, and Retention</h3>
+      <ul>
+        <li>Portal <strong>audit logs</strong> for uploads, downloads, and access events are retained for <strong>[FILL: X months/years]</strong>.</li>
+        <li>Engagement workpapers retained for <strong>[FILL: X years]</strong> unless otherwise specified in the MSA/SOW.</li>
+        <li>Secure deletion upon contract end or at client instruction; destruction certificates available upon request.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Business Continuity & Incident Response</h3>
+      <ul>
+        <li>Documented <strong>BC/DR</strong> with RPO/RTO targets of <strong>[FILL: e.g., RPO 24h / RTO 24–48h]</strong>.</li>
+        <li>Security incidents triaged within <strong>[FILL: e.g., 24 hours]</strong> and reported to clients as required by contract/law.</li>
+        <li>Annual tabletop testing of IR runbooks.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Compliance and Assessments</h3>
+      <ul>
+        <li><strong>Policies:</strong> information security, data classification, vendor risk, access control, and incident response reviewed annually.</li>
+        <li><strong>Training:</strong> annual security & confidentiality training for all staff and contractors.</li>
+        <li><strong>Assessments:</strong> client due diligence (questionnaires, control mappings) supported on request.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Contact</h3>
+      <p>Security questions: <a href="mailto:[FILL: security@yourdomain]">[FILL: security@yourdomain]</a></p>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Clear Credit Insights. All rights reserved. · <a href="security-compliance.html" style="color:#fff">Security & Compliance</a> · <a href="vendor-due-diligence.html" style="color:#fff">Vendor Due Diligence</a> · <a href="privacy.html" style="color:#fff">Privacy</a> · <a href="terms.html" style="color:#fff">Terms</a></p>
+  </footer>
+</body>
+</html>
