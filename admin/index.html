@@ -5,60 +5,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Content Manager</title>
 
-  <!-- 1) Netlify Identity widget -->
+  <!-- Identity widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-  <!-- 2) Tell Decap we will initialize manually (MUST be BEFORE the CMS script) -->
+  <!-- IMPORTANT: Tell Decap we'll init manually (must be BEFORE the CMS script) -->
   <script>window.CMS_MANUAL_INIT = true;</script>
 
-  <!-- 3) Decap CMS app -->
-  <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+  <!-- Pin Decap CMS to a stable version (avoid "latest" quirks) -->
+  <script src="https://cdn.jsdelivr.net/npm/decap-cms@2.15.1/dist/decap-cms.js"></script>
+
+  <style>
+    #status{font-family:system-ui,Segoe UI,Roboto,Arial;margin:16px;padding:12px;border-left:4px solid #f4b400;background:#fff}
+    #btn{margin:0 0 8px 16px;padding:8px 12px;border-radius:8px}
+  </style>
 </head>
 <body>
-  <!-- Small helper UI -->
-  <div style="font-family:system-ui,Segoe UI,Roboto,Arial;margin:24px;">
-    <button id="openLogin" style="padding:10px 16px;border-radius:8px;cursor:pointer">
-      Open Login / Sign up
-    </button>
-    <span id="userState" style="margin-left:12px;color:#555"></span>
-  </div>
+  <div id="status">Booting…</div>
+  <button id="btn">Open Login / Sign up</button>
 
   <script>
-    // Identity login helpers
-    if (window.netlifyIdentity) {
+    // Small helper to show status on-page (easier than mobile devtools)
+    function setStatus(msg){ document.getElementById('status').innerHTML = msg; }
+
+    // Identity helpers
+    (function(){
+      if (!window.netlifyIdentity) { setStatus('Identity widget failed to load.'); return; }
+      setStatus('Identity widget loaded.');
+      document.getElementById('btn').onclick = () => netlifyIdentity.open('login');
       netlifyIdentity.on('init', (user) => {
-        document.getElementById('userState').textContent = user ? 'Signed in' : 'Signed out';
+        setStatus('Identity init: ' + (user ? 'signed in' : 'signed out'));
         if (!user) netlifyIdentity.open('login');
       });
-      netlifyIdentity.on('login', () => location.reload());
-      netlifyIdentity.on('logout', () => location.reload());
-      document.getElementById('openLogin').onclick = () => netlifyIdentity.open('login');
-    }
+      netlifyIdentity.on('login', () => { setStatus('Logged in. Reloading…'); location.reload(); });
+      netlifyIdentity.on('logout', () => { setStatus('Logged out. Reloading…'); location.reload(); });
+    })();
 
-    // 4) Manual init config — avoids fetching /admin/config.yml
-    (function () {
-      const cfg = {
-        backend: { name: 'git-gateway', branch: 'main' }, // change to 'master' if your repo default is master
-        media_folder: 'assets/uploads',
-        public_folder: '/assets/uploads',
-        collections: [
-          {
-            name: 'articles',
-            label: 'Articles',
-            folder: 'articles',
-            create: true,
-            slug: '{{slug}}',
-            extension: 'md',
-            preview_path: 'article.html?post={{slug}}',
-            fields: [
-              { label: 'Title',   name: 'title',   widget: 'string'   },
-              { label: 'Summary', name: 'summary', widget: 'text'     },
-              { label: 'Body',    name: 'body',    widget: 'markdown' },
+    // Initialize CMS manually (no fetch of /admin/config.yml)
+    (function(){
+      // Wait until Decap is present
+      function waitForCMS(tries){
+        if (window.CMS && typeof window.CMS.init === 'function') return initCMS();
+        if (tries > 40) { setStatus('CMS failed to load.'); return; }
+        setStatus('Waiting for CMS… (' + tries + ')');
+        return setTimeout(() => waitForCMS(tries+1), 150);
+      }
+
+      function initCMS(){
+        try {
+          setStatus('CMS loaded. Initializing…');
+          const cfg = {
+            backend: { name: 'git-gateway', branch: 'main' }, // change to 'master' if your repo default is master
+            media_folder: 'assets/uploads',
+            public_folder: '/assets/uploads',
+            collections: [
+              {
+                name: 'articles',
+                label: 'Articles',
+                folder: 'articles',
+                create: true,
+                slug: '{{slug}}',
+                extension: 'md',
+                preview_path: 'article.html?post={{slug}}',
+                fields: [
+                  { label: 'Title',   name: 'title',   widget: 'string'   },
+                  { label: 'Summary', name: 'summary', widget: 'text'     },
+                  { label: 'Body',    name: 'body',    widget: 'markdown' },
+                ]
+              }
             ]
-          }
-        ]
-      };
-      CMS.init({ config: cfg });
+          };
+          CMS.init({ config: cfg });
+          setStatus('CMS initialized. If UI is empty, ensure Git Gateway is enabled.');
+        } catch (e) {
+          setStatus('Init error: ' + (e && e.message ? e.message : e));
+        }
+      }
+
+      waitForCMS(1);
     })();
   </script>
 </body>
