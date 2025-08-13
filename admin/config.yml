@@ -1,14 +1,14 @@
 backend:
   name: git-gateway
-  branch: main
+  branch: main  # change to master if that's your repo's default
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
 collections:
-  - name: "article"
+  - name: "articles"
     label: "Articles"
-    folder: "article"
+    folder: "articles"
     create: true
     slug: "{{slug}}"
     extension: "md"
