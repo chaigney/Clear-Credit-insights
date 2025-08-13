@@ -6,9 +6,9 @@ media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
 collections:
-  - name: "articles"
+  - name: "article"
     label: "Articles"
-    folder: "articles"
+    folder: "article"
     create: true
     slug: "{{slug}}"
     extension: "md"
