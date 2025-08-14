@@ -1,116 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Security & Compliance — Clear Credit Insights</title>
-  <meta name="description" content="Bank-grade security and compliance controls for outsourced commercial credit analysis."/>
+  <meta name="description" content="Our security and compliance practices for handling confidential commercial credit information. Encryption, access controls, retention, NDAs, and vendor due diligence." />
+  <link rel="canonical" href="https://creditinsight.netlify.app/security-compliance.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Security & Compliance — Clear Credit Insights" />
+  <meta property="og:description" content="Encryption, MFA, access controls, retention/deletion, NDAs, and vendor due diligence for outsourced credit analysis." />
+  <meta property="og:url" content="https://creditinsight.netlify.app/security-compliance.html" />
+  <meta property="og:image" content="https://creditinsight.netlify.app/og-image.jpg" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+
   <style>
-    :root{--brand-navy:#1a3e5c;--brand-navy-2:#2a5787;--brand-gold:#f4b400;--text:#222;--bg:#f4f6f8;--card:#fff;}
-    body{font-family:'Segoe UI',Tahoma,Verdana,sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.7;font-size:18px}
-    /* Brand header + sticky nav (match site) */
-    header.brand-header{background:var(--brand-navy);color:#fff;padding:20px 24px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
-    .brand{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center}
-    .brand img{height:110px;width:auto;border-radius:8px}
-    .brand h1{margin:0;font-size:2rem}
-    .tagline{font-size:1.05rem;opacity:.95}
-    .sticky-nav{position:sticky;top:0;z-index:1000;background:var(--brand-navy);box-shadow:0 6px 18px rgba(0,0,0,.12)}
-    .sticky-nav-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:22px;flex-wrap:wrap;align-items:center;padding:10px 16px}
-    .sticky-nav a{color:#fff;text-decoration:none;font-weight:600;font-size:.98rem;padding-bottom:2px;border-bottom:2px solid transparent}
-    .sticky-nav a:hover,.sticky-nav a:focus{border-color:var(--brand-gold)}
-    .login-btn{background:var(--brand-gold);color:var(--brand-navy);padding:10px 16px;border-radius:999px;font-weight:800;text-decoration:none}
-    /* Page */
-    main{max-width:1000px;margin:30px auto;padding:0 16px}
-    .card{background:#fff;padding:22px;border-radius:12px;box-shadow:0 6px 16px rgba(0,0,0,.08);margin-bottom:18px}
-    h2,h3{color:var(--brand-navy)}
-    ul{margin:0 0 1em 1.2em}
-    code{background:#eef3f8;padding:2px 6px;border-radius:4px}
-    footer{background:var(--brand-navy);color:#fff;text-align:center;padding:26px;margin-top:40px}
+    :root{
+      --brand-navy:#1a3e5c; --brand-navy-2:#2a5787; --brand-gold:#f4b400;
+      --text:#1f2937; --muted:#6b7280; --bg:#f4f6f8; --card:#fff; --ring:rgba(244,180,0,.4);
+      --max-w:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{font-family:Inter,"Segoe UI",Tahoma,Verdana,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:17px}
+    a{color:var(--brand-navy-2);text-decoration:none} a:hover{text-decoration:underline}
+    img{max-width:100%;height:auto;display:block}
+    .wrap{max-width:var(--max-w);margin:0 auto;padding:0 20px}
+
+    /* Header (static) */
+    header{background:var(--brand-navy);color:#fff}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand img{height:40px;border-radius:8px}
+    .brand-name{margin:0;font-size:1.15rem;font-weight:800}
+    .nav{display:flex;gap:14px;align-items:center}
+    .nav a{color:#fff;font-weight:600;border-bottom:2px solid transparent;padding-bottom:2px}
+    .nav a:hover{border-color:var(--brand-gold)}
+    .login-btn{background:var(--brand-gold);color:var(--brand-navy);padding:8px 12px;border-radius:999px;font-weight:800;font-size:.95rem}
+    .menu-btn{display:none;background:transparent;border:0;color:#fff;font-size:1rem}
+    @media(max-width:860px){
+      .nav{display:none} .menu-btn{display:inline-flex;align-items:center;gap:8px}
+      .mobile-nav{display:none;background:var(--brand-navy);padding:8px 0;border-top:1px solid rgba(255,255,255,.12)}
+      .mobile-nav a{display:block;color:#fff;padding:10px 20px}
+      .mobile-nav .login-btn{display:inline-block;margin:8px 20px}
+    }
+
+    /* Hero */
+    .hero{background:linear-gradient(135deg,var(--brand-navy),var(--brand-navy-2));color:#fff;padding:64px 0 48px;text-align:center}
+    .hero h1{margin:0 0 8px;font-size:2.1rem}
+    .hero p{max-width:860px;margin:0 auto;opacity:.95}
+
+    /* Sections */
+    section{padding:48px 0}
+    h2{color:var(--brand-navy);margin:0 0 14px;font-size:1.6rem}
+    .sub{color:var(--muted);margin:4px 0 18px}
+    .grid{display:grid;gap:18px}
+    @media(min-width:920px){.grid-2{grid-template-columns:1fr 1fr}}
+
+    .card{background:var(--card);padding:22px;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.06)}
+    .card h3{margin-top:0;color:var(--brand-navy-2)}
+    .badge{display:inline-block;background:var(--brand-gold);color:var(--brand-navy);padding:2px 8px;border-radius:999px;font-weight:800;font-size:.8rem;margin-left:8px}
+
+    /* Table */
+    table{width:100%;border-collapse:collapse;background:var(--card);box-shadow:0 4px 14px rgba(0,0,0,.06);border-radius:12px;overflow:hidden}
+    th,td{padding:12px 14px;text-align:left;border-bottom:1px solid #e5e7eb}
+    th{background:#f8fafc;color:#0f172a}
+    tr:last-child td{border-bottom:none}
+
+    /* Note banner */
+    .note{background:#fff8e6;border:1px solid #fde68a;color:#92400e;padding:12px 14px;border-radius:10px}
+
+    /* Footer */
+    footer{background:var(--brand-navy);color:#fff;padding:28px 0;margin-top:40px;font-size:.95rem}
+    footer a{color:#fff}
+    .footer-links{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
   </style>
+
+  <!-- Optional minimal schema -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"Clear Credit Insights","url":"https://creditinsight.netlify.app/","logo":"https://creditinsight.netlify.app/logo-clear-credit-insights.png"}
+  </script>
 </head>
 <body>
   <!-- Header -->
-  <header class="brand-header" aria-label="Company header">
-    <div class="brand">
-      <img src="logo-clear-credit-insights.png" alt="Clear Credit Insights logo">
-      <div>
-        <h1>Clear Credit Insights</h1>
-        <div class="tagline">Clarity in Credit. Confidence in Decisions.</div>
-      </div>
+  <header>
+    <div class="wrap topbar" role="navigation" aria-label="Primary">
+      <a class="brand" href="/" aria-label="Home">
+        <img src="logo-clear-credit-insights.png" alt="Clear Credit Insights logo">
+        <strong class="brand-name">Clear Credit Insights</strong>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="/services.html">Services</a>
+        <a href="/insights.html">Insights</a>
+        <a href="/vendor-due-diligence.html">Vendor Due Diligence</a>
+        <a href="/#contact">Contact</a>
+        <a href="https://portal.clearcreditinsights.com" class="login-btn">Client Login</a>
+      </nav>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">☰ Menu</button>
     </div>
-  </header>
-  <div class="sticky-nav" role="navigation" aria-label="Sticky navigation">
-    <div class="sticky-nav-inner">
-      <a href="index.html#services">Services</a>
-      <a href="insights.html">Credit Insights</a>
-      <a href="index.html#process">Process</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#contact">Contact</a>
+    <div id="mobileNav" class="mobile-nav" role="navigation" aria-label="Mobile">
+      <a href="/services.html">Services</a>
+      <a href="/insights.html">Insights</a>
+      <a href="/vendor-due-diligence.html">Vendor Due Diligence</a>
+      <a href="/#contact">Contact</a>
       <a href="https://portal.clearcreditinsights.com" class="login-btn">Client Login</a>
     </div>
-  </div>
+  </header>
 
-  <main>
-    <div class="card">
-      <h2>Security & Compliance Overview</h2>
-      <p>We handle sensitive borrower and portfolio information for banks. Our controls are designed to align with OCC/FDIC expectations and common vendor risk frameworks.</p>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <h1>Security & Compliance</h1>
+      <p>Protecting your borrowers’ confidential information is our top priority. Our processes are designed to meet the standards community and regional banks expect for secure credit analysis.</p>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Data Hosting & Encryption</h3>
-      <ul>
-        <li><strong>Portal:</strong> Citrix ShareFile (Business/Enterprise) with org subdomain <code>portal.clearcreditinsights.com</code>.</li>
-        <li><strong>Transport:</strong> TLS 1.2+ for all data in transit.</li>
-        <li><strong>At Rest:</strong> AES-256 encryption within ShareFile-managed storage.</li>
-        <li><strong>Backups:</strong> ShareFile native redundancy; critical artifacts mirrored to bank-approved storage when required.</li>
-      </ul>
+  <!-- Data security standards -->
+  <section>
+    <div class="wrap">
+      <h2>Data Security Standards</h2>
+      <p class="sub">We apply layered controls across transmission, storage, access, and monitoring.</p>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Encryption</h3>
+          <ul>
+            <li><strong>In transit:</strong> TLS 1.2+ HTTPS for all file transfers and portal sessions.</li>
+            <li><strong>At rest:</strong> AES‑256 encryption provided by our secure portal provider.</li>
+            <li><strong>Key management:</strong> Managed by provider with strict controls and auditing.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Secure File Portal</h3>
+          <ul>
+            <li>All documents exchanged via an encrypted client portal (<em>e.g., ShareFile</em>).</li>
+            <li>Expiring upload links; optional client accounts with MFA.</li>
+            <li>Granular folder permissions and comprehensive audit logs.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Identity & Access</h3>
+          <ul>
+            <li><strong>MFA:</strong> Multi‑factor authentication for staff and client portal users.</li>
+            <li><strong>RBAC:</strong> Role‑based access; least‑privilege by default.</li>
+            <li><strong>Session controls:</strong> Automatic timeouts and device/IP logging.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Workstation & Network</h3>
+          <ul>
+            <li>Full‑disk encryption on analyst devices; automatic screen lock.</li>
+            <li>Vendor‑managed endpoint protection and patching.</li>
+            <li>No borrower data stored locally beyond active work products.</li>
+          </ul>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Identity, Access, and MFA</h3>
-      <ul>
-        <li>Mandatory <strong>MFA</strong> for staff and client users.</li>
-        <li><strong>Least-privilege</strong> access by engagement and role; per-client segmented workspaces.</li>
-        <li>Optional <strong>SSO/SAML</strong> for bank personnel upon request.</li>
-        <li>Session timeouts and password complexity policies enforced.</li>
-      </ul>
+  <!-- Access & permissions / retention -->
+  <section>
+    <div class="wrap">
+      <h2>Access, Retention & Deletion</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Access & Permissions</h3>
+          <ul>
+            <li>Analysts only see client folders and files they are assigned.</li>
+            <li>Separation of duties for analysis and quality control whenever feasible.</li>
+            <li>Client banks can restrict visibility further on request.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Retention & Deletion</h3>
+          <div class="note"><strong>Set your policy:</strong> Replace the placeholders below with your final policy.</div>
+          <ul>
+            <li><strong>Retention:</strong> Workpapers retained for <em>[X months/years]</em> unless otherwise requested by client.</li>
+            <li><strong>Deletion:</strong> Secure deletion within <em>[Y days]</em> after retention period or upon written request.</li>
+            <li><strong>Backups:</strong> Provider‑managed encrypted backups per their data protection policy.</li>
+          </ul>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Audit, Logging, and Retention</h3>
-      <ul>
-        <li>Portal <strong>audit logs</strong> for uploads, downloads, and access events are retained for <strong>[FILL: X months/years]</strong>.</li>
-        <li>Engagement workpapers retained for <strong>[FILL: X years]</strong> unless otherwise specified in the MSA/SOW.</li>
-        <li>Secure deletion upon contract end or at client instruction; destruction certificates available upon request.</li>
-      </ul>
+  <!-- Confidentiality & regulatory alignment -->
+  <section>
+    <div class="wrap">
+      <h2>Confidentiality & Regulatory Alignment</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Confidentiality & Legal</h3>
+          <ul>
+            <li><strong>NDA:</strong> Mutual NDA executed for every engagement; we can also sign your bank’s NDA.</li>
+            <li><strong>Use limitations:</strong> Documents used solely for agreed analysis and deliverables.</li>
+            <li><strong>Subprocessors:</strong> We disclose core providers on request; U.S. data residency preferred.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Regulatory Expectations</h3>
+          <ul>
+            <li>Controls and documentation designed to support <em>third‑party risk management</em> reviews.</li>
+            <li>Practices informed by <em>FFIEC</em> guidance and OCC bulletins on third‑party relationships.</li>
+            <li>Audit logs and evidence available for examiner review via our secure portal provider.</li>
+          </ul>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Business Continuity & Incident Response</h3>
-      <ul>
-        <li>Documented <strong>BC/DR</strong> with RPO/RTO targets of <strong>[FILL: e.g., RPO 24h / RTO 24–48h]</strong>.</li>
-        <li>Security incidents triaged within <strong>[FILL: e.g., 24 hours]</strong> and reported to clients as required by contract/law.</li>
-        <li>Annual tabletop testing of IR runbooks.</li>
-      </ul>
+  <!-- Incident response & business continuity -->
+  <section>
+    <div class="wrap">
+      <h2>Incident Response & Business Continuity</h2>
+      <table aria-label="Overview of incident response and continuity controls">
+        <thead>
+          <tr>
+            <th scope="col">Control Area</th>
+            <th scope="col">Summary</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Incident Response</td>
+            <td>Documented triage, containment, notification, and post‑mortem process; clients notified per contractual obligations.</td>
+          </tr>
+          <tr>
+            <td>Business Continuity</td>
+            <td>Work products stored in the secure portal; analysts can resume work from alternate devices with MFA if a device fails.</td>
+          </tr>
+          <tr>
+            <td>Change Management</td>
+            <td>Version control for templates and workpapers; changes reviewed and approved before production use.</td>
+          </tr>
+          <tr>
+            <td>Training & Awareness</td>
+            <td>Periodic security awareness training for analysts; acceptable‑use and data handling policies acknowledged.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Compliance and Assessments</h3>
-      <ul>
-        <li><strong>Policies:</strong> information security, data classification, vendor risk, access control, and incident response reviewed annually.</li>
-        <li><strong>Training:</strong> annual security & confidentiality training for all staff and contractors.</li>
-        <li><strong>Assessments:</strong> client due diligence (questionnaires, control mappings) supported on request.</li>
-      </ul>
+  <!-- Insurance -->
+  <section>
+    <div class="wrap">
+      <h2>Insurance Coverage</h2>
+      <div class="card">
+        <ul>
+          <li><strong>Professional Liability / E&O:</strong> <em>[Insert limit, e.g., $1,000,000]</em></li>
+          <li><strong>Cyber Liability:</strong> <em>[Insert limit, e.g., $1,000,000]</em></li>
+          <li><strong>Certificates of Insurance:</strong> Available upon request.</li>
+        </ul>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Contact</h3>
-      <p>Security questions: <a href="mailto:[FILL: security@yourdomain]">[FILL: security@yourdomain]</a></p>
+  <!-- CTA -->
+  <section>
+    <div class="wrap">
+      <div class="card">
+        <h3 style="margin-top:0;color:var(--brand-navy)">Need the full details?</h3>
+        <p>Our <strong>Vendor Due Diligence Packet</strong> includes company profile, security controls, insurance, and process documentation.</p>
+        <p style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="/vendor-due-diligence.html" class="btn" style="background:var(--brand-gold);color:var(--brand-navy);padding:12px 18px;border-radius:8px;font-weight:800;display:inline-block">View Due Diligence Packet</a>
+          <a href="/#contact" class="btn" style="background:#fff;border:2px solid var(--brand-navy-2);color:var(--brand-navy);padding:10px 16px;border-radius:8px;font-weight:800;display:inline-block">Request a Consultation</a>
+        </p>
+        <p class="sub">Last updated: August 14, 2025</p>
+      </div>
     </div>
-  </main>
+  </section>
 
-  <footer>
-    <p>&copy; 2025 Clear Credit Insights. All rights reserved. · <a href="security-compliance.html" style="color:#fff">Security & Compliance</a> · <a href="vendor-due-diligence.html" style="color:#fff">Vendor Due Diligence</a> · <a href="privacy.html" style="color:#fff">Privacy</a> · <a href="terms.html" style="color:#fff">Terms</a></p>
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="wrap" style="text-align:center">
+      <p>&copy; 2025 Clear Credit Insights. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="/security-compliance.html" aria-current="page">Security &amp; Compliance</a><span>·</span>
+        <a href="/vendor-due-diligence.html">Vendor Due Diligence</a><span>·</span>
+        <a href="/insights.html">Insights</a><span>·</span>
+        <a href="/privacy.html">Privacy</a><span>·</span>
+        <a href="/terms.html">Terms</a>
+      </div>
+    </div>
   </footer>
+
+  <script>
+    const btn=document.querySelector('.menu-btn'); const mobile=document.getElementById('mobileNav');
+    if(btn&&mobile){btn.addEventListener('click',()=>{const open=mobile.style.display==='block';mobile.style.display=open?'none':'block';btn.setAttribute('aria-expanded',String(!open));});}
+  </script>
 </body>
 </html>
