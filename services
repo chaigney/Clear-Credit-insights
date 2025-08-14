@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Services — Clear Credit Insights</title>
+  <meta name="description" content="Commercial loan underwriting support, portfolio reviews, risk rating validation, and special projects for bank credit teams." />
+  <link rel="canonical" href="https://creditinsight.netlify.app/services.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Services — Clear Credit Insights" />
+  <meta property="og:description" content="Underwriting support, portfolio reviews, risk rating validation, and special projects." />
+  <meta property="og:url" content="https://creditinsight.netlify.app/services.html" />
+  <meta property="og:image" content="https://creditinsight.netlify.app/og-image.jpg" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+
+  <style>
+    :root{--brand-navy:#1a3e5c;--brand-navy-2:#2a5787;--brand-gold:#f4b400;--text:#1f2937;--muted:#6b7280;--bg:#f4f6f8;--card:#fff;--ring:rgba(244,180,0,.4);--max-w:1100px}
+    *{box-sizing:border-box} html,body{margin:0;padding:0}
+    body{font-family:Inter,"Segoe UI",Tahoma,Verdana,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:17px}
+    a{color:var(--brand-navy-2);text-decoration:none} a:hover{text-decoration:underline}
+    .wrap{max-width:var(--max-w);margin:0 auto;padding:0 20px}
+
+    header{background:var(--brand-navy);color:#fff}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand img{height:40px;border-radius:8px}
+    .brand-name{margin:0;font-size:1.15rem;font-weight:800}
+    .nav{display:flex;gap:14px;align-items:center}
+    .nav a{color:#fff;font-weight:600;border-bottom:2px solid transparent;padding-bottom:2px}
+    .nav a:hover{border-color:var(--brand-gold)}
+    .login-btn{background:var(--brand-gold);color:var(--brand-navy);padding:8px 12px;border-radius:999px;font-weight:800;font-size:.95rem}
+    .menu-btn{display:none;background:transparent;border:0;color:#fff;font-size:1rem}
+    @media(max-width:860px){
+      .nav{display:none} .menu-btn{display:inline-flex;align-items:center;gap:8px}
+      .mobile-nav{display:none;background:var(--brand-navy);padding:8px 0;border-top:1px solid rgba(255,255,255,.12)}
+      .mobile-nav a{display:block;color:#fff;padding:10px 20px}
+      .mobile-nav .login-btn{display:inline-block;margin:8px 20px}
+    }
+
+    /* Layout */
+    section{padding:56px 0}
+    h1,h2{color:var(--brand-navy)}
+    .sub{color:var(--muted);margin:6px 0 24px}
+    .grid{display:grid;gap:18px}
+    @media(min-width:860px){.grid-2{grid-template-columns:repeat(2,1fr)}}
+    .card{background:var(--card);padding:22px;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.06)}
+    .card h3{margin-top:0;color:var(--brand-navy-2)}
+
+    ul{margin:10px 0 0 18px}
+    li+li{margin-top:6px}
+
+    footer{background:var(--brand-navy);color:#fff;padding:28px 0;margin-top:40px;font-size:.95rem}
+    footer a{color:#fff}
+    .footer-links{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap topbar" role="navigation" aria-label="Primary">
+      <a class="brand" href="/" aria-label="Home">
+        <img src="logo-clear-credit-insights.png" alt="Clear Credit Insights logo">
+        <strong class="brand-name">Clear Credit Insights</strong>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="/services.html" aria-current="page">Services</a>
+        <a href="/insights.html">Insights</a>
+        <a href="/#contact">Contact</a>
+        <a href="https://portal.clearcreditinsights.com" class="login-btn">Client Login</a>
+      </nav>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">☰ Menu</button>
+    </div>
+    <div id="mobileNav" class="mobile-nav" role="navigation" aria-label="Mobile">
+      <a href="/services.html" aria-current="page">Services</a>
+      <a href="/insights.html">Insights</a>
+      <a href="/#contact">Contact</a>
+      <a href="https://portal.clearcreditinsights.com" class="login-btn">Client Login</a>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <h1>Services</h1>
+      <p class="sub">Commercial loan underwriting support, independent portfolio reviews, risk rating validation, and special projects — delivered like your own credit department.</p>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Loan Underwriting Support</h3>
+          <p><strong>What we do:</strong></p>
+          <ul>
+            <li>C&I, CRE, construction, equipment, and working capital lines</li>
+            <li>Financial spreading, ratio analysis, and industry benchmarking</li>
+            <li>Complete credit memos formatted to your templates</li>
+          </ul>
+          <p><strong>Typical deliverables:</strong></p>
+          <ul>
+            <li>Credit memo (Word/PDF)</li>
+            <li>Ratio analysis with commentary</li>
+            <li>UCA/global cash flow (as applicable)</li>
+            <li>Risk rating recommendation with rationale</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Portfolio Reviews & Risk Rating Validation</h3>
+          <p><strong>What we do:</strong></p>
+          <ul>
+            <li>Independent validation of assigned risk ratings</li>
+            <li>Concentration and stress testing analysis</li>
+            <li>Narrative support for rating changes</li>
+          </ul>
+          <p><strong>Typical deliverables:</strong></p>
+          <ul>
+            <li>Risk rating worksheet (numeric grid + narrative)</li>
+            <li>Portfolio summary with key metrics</li>
+            <li>Recommendations for rating or policy updates</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Special Projects</h3>
+          <p><strong>What we do:</strong></p>
+          <ul>
+            <li>M&amp;A credit due diligence</li>
+            <li>Loan policy review and gap analysis</li>
+            <li>Compliance preparation and exam readiness checks</li>
+          </ul>
+          <p><strong>Typical deliverables:</strong></p>
+          <ul>
+            <li>Project-specific analysis and reporting</li>
+            <li>Executive summary for board/committee</li>
+            <li>Supporting schedules and exhibits</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Temporary Capacity Support</h3>
+          <p><strong>What we do:</strong></p>
+          <ul>
+            <li>On-demand credit analysis during peak volume or staff leave</li>
+            <li>Operate as an integrated extension of your credit team</li>
+          </ul>
+          <p><strong>Why it matters:</strong> Avoid backlogs, maintain service levels, and keep deals moving without adding headcount.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:24px">
+        <p><strong>Samples & Templates:</strong> See our anonymized <a href="/samples.html">credit memo</a>, <a href="/samples.html#risk-rating">risk rating worksheet &amp; narrative</a>, <a href="/samples.html#portfolio-summary">portfolio review summary</a>, and <a href="/templates.html">downloadable templates</a>.</p>
+      </div>
+
+      <div style="margin-top:24px">
+        <a class="btn" href="/#contact" style="display:inline-block;background:var(--brand-gold);color:var(--brand-navy);padding:12px 18px;border-radius:8px;font-weight:800">Request a Consultation</a>
+      </div>
+    </div>
+  </section>
+
+  <footer role="contentinfo">
+    <div class="wrap" style="text-align:center">
+      <p>&copy; 2025 Clear Credit Insights. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="/security-compliance.html">Security &amp; Compliance</a><span>·</span>
+        <a href="/vendor-due-diligence.html">Vendor Due Diligence</a><span>·</span>
+        <a href="/insights.html">Insights</a><span>·</span>
+        <a href="/privacy.html">Privacy</a><span>·</span>
+        <a href="/terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const btn=document.querySelector('.menu-btn'); const mobile=document.getElementById('mobileNav');
+    if(btn&&mobile){btn.addEventListener('click',()=>{const open=mobile.style.display==='block';mobile.style.display=open?'none':'block';btn.setAttribute('aria-expanded',String(!open));});}
+  </script>
+</body>
+</html>
