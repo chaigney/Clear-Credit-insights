@@ -1,106 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Vendor Due Diligence — Clear Credit Insights</title>
-  <meta name="description" content="Due diligence information for banks evaluating Clear Credit Insights as a third-party vendor."/>
+  <meta name="description" content="Clear Credit Insights vendor due diligence: company profile, contacts, insurance, security controls, data handling, incident response, and supporting documents." />
+  <link rel="canonical" href="https://creditinsight.netlify.app/vendor-due-diligence.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Vendor Due Diligence — Clear Credit Insights" />
+  <meta property="og:description" content="Company profile, insurance, security & compliance, and due diligence documents for bank vendor review." />
+  <meta property="og:url" content="https://creditinsight.netlify.app/vendor-due-diligence.html" />
+  <meta property="og:image" content="https://creditinsight.netlify.app/og-image.jpg" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+
   <style>
-    :root{--brand-navy:#1a3e5c;--brand-navy-2:#2a5787;--brand-gold:#f4b400;--text:#222;--bg:#f4f6f8;--card:#fff;}
-    body{font-family:'Segoe UI',Tahoma,Verdana,sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.7;font-size:18px}
-    header.brand-header{background:var(--brand-navy);color:#fff;padding:20px 24px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
-    .brand{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center}
-    .brand img{height:110px;width:auto;border-radius:8px}
-    .brand h1{margin:0;font-size:2rem}
-    .tagline{font-size:1.05rem;opacity:.95}
-    .sticky-nav{position:sticky;top:0;z-index:1000;background:var(--brand-navy);box-shadow:0 6px 18px rgba(0,0,0,.12)}
-    .sticky-nav-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:22px;flex-wrap:wrap;align-items:center;padding:10px 16px}
-    .sticky-nav a{color:#fff;text-decoration:none;font-weight:600;font-size:.98rem;padding-bottom:2px;border-bottom:2px solid transparent}
-    .sticky-nav a:hover{border-color:var(--brand-gold)}
-    .login-btn{background:var(--brand-gold);color:var(--brand-navy);padding:10px 16px;border-radius:999px;font-weight:800;text-decoration:none}
-    main{max-width:1000px;margin:30px auto;padding:0 16px}
-    .card{background:#fff;padding:22px;border-radius:12px;box-shadow:0 6px 16px rgba(0,0,0,.08);margin-bottom:18px}
-    h2,h3{color:var(--brand-navy)}
-    table{width:100%;border-collapse:collapse}
-    th,td{padding:10px;border-bottom:1px solid #e6edf4;text-align:left}
-    footer{background:var(--brand-navy);color:#fff;text-align:center;padding:26px;margin-top:40px}
+    :root{
+      --brand-navy:#1a3e5c; --brand-navy-2:#2a5787; --brand-gold:#f4b400;
+      --text:#1f2937; --muted:#6b7280; --bg:#f4f6f8; --card:#fff; --ring:rgba(244,180,0,.4);
+      --max-w:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{font-family:Inter,"Segoe UI",Tahoma,Verdana,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:17px}
+    a{color:var(--brand-navy-2);text-decoration:none} a:hover{text-decoration:underline}
+    .wrap{max-width:var(--max-w);margin:0 auto;padding:0 20px}
+
+    /* Header (static) */
+    header{background:var(--brand-navy);color:#fff}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand img{height:40px;border-radius:8px}
+    .brand-name{margin:0;font-size:1.15rem;font-weight:800}
+    .nav{display:flex;gap:14px;align-items:center}
+    .nav a{color:#fff;font-weight:600;border-bottom:2px solid transparent;padding-bottom:2px}
+    .nav a:hover{border-color:var(--brand-gold)}
+    .login-btn{background:var(--brand-gold);color:var(--brand-navy);padding:8px 12px;border-radius:999px;font-weight:800;font-size:.95rem}
+    .menu-btn{display:none;background:transparent;border:0;color:#fff;font-size:1rem}
+    @media(max-width:860px){
+      .nav{display:none} .menu-btn{display:inline-flex;align-items:center;gap:8px}
+      .mobile-nav{display:none;background:var(--brand-navy);padding:8px 0;border-top:1px solid rgba(255,255,255,.12)}
+      .mobile-nav a{display:block;color:#fff;padding:10px 20px}
+      .mobile-nav .login-btn{display:inline-block;margin:8px 20px}
+    }
+
+    /* Hero */
+    .hero{background:linear-gradient(135deg,var(--brand-navy),var(--brand-navy-2));color:#fff;padding:64px 0 48px;text-align:center}
+    .hero h1{margin:0 0 8px;font-size:2.1rem}
+    .hero p{max-width:860px;margin:0 auto;opacity:.95}
+
+    /* Sections */
+    section{padding:48px 0}
+    h2{color:var(--brand-navy);margin:0 0 14px;font-size:1.6rem}
+    .sub{color:var(--muted);margin:4px 0 18px}
+    .grid{display:grid;gap:18px}
+    @media(min-width:920px){.grid-2{grid-template-columns:1fr 1fr}}
+
+    .card{background:var(--card);padding:22px;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.06)}
+    .card h3{margin-top:0;color:var(--brand-navy-2)}
+
+    /* Tables */
+    table{width:100%;border-collapse:collapse;background:var(--card);box-shadow:0 4px 14px rgba(0,0,0,.06);border-radius:12px;overflow:hidden}
+    th,td{padding:12px 14px;text-align:left;border-bottom:1px solid #e5e7eb;vertical-align:top}
+    th{background:#f8fafc;color:#0f172a}
+    tr:last-child td{border-bottom:none}
+
+    .note{background:#fff8e6;border:1px solid #fde68a;color:#92400e;padding:12px 14px;border-radius:10px}
+    .badge{display:inline-block;background:var(--brand-gold);color:var(--brand-navy);padding:2px 8px;border-radius:999px;font-weight:800;font-size:.8rem;margin-left:8px}
+
+    /* Footer */
+    footer{background:var(--brand-navy);color:#fff;padding:28px 0;margin-top:40px;font-size:.95rem}
+    footer a{color:#fff}
+    .footer-links{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
   </style>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"Clear Credit Insights","url":"https://creditinsight.netlify.app/","logo":"https://creditinsight.netlify.app/logo-clear-credit-insights.png"}
+  </script>
 </head>
 <body>
-  <header class="brand-header">
-    <div class="brand">
-      <img src="logo-clear-credit-insights.png" alt="Clear Credit Insights logo">
-      <div>
-        <h1>Clear Credit Insights</h1>
-        <div class="tagline">Clarity in Credit. Confidence in Decisions.</div>
-      </div>
+  <!-- Header -->
+  <header>
+    <div class="wrap topbar" role="navigation" aria-label="Primary">
+      <a class="brand" href="/" aria-label="Home">
+        <img src="logo-clear-credit-insights.png" alt="Clear Credit Insights logo">
+        <strong class="brand-name">Clear Credit Insights</strong>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="/services.html">Services</a>
+        <a href="/security-compliance.html">Security &amp; Compliance</a>
+        <a href="/insights.html">Insights</a>
+        <a href="/#contact">Contact</a>
+        <a href="https://portal.clearcreditinsights.com" class="login-btn">Client Login</a>
+      </nav>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">☰ Menu</button>
     </div>
-  </header>
-  <div class="sticky-nav">
-    <div class="sticky-nav-inner">
-      <a href="index.html#services">Services</a>
-      <a href="insights.html">Credit Insights</a>
-      <a href="index.html#process">Process</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#contact">Contact</a>
+    <div id="mobileNav" class="mobile-nav" role="navigation" aria-label="Mobile">
+      <a href="/services.html">Services</a>
+      <a href="/security-compliance.html">Security &amp; Compliance</a>
+      <a href="/insights.html">Insights</a>
+      <a href="/#contact">Contact</a>
       <a href="https://portal.clearcreditinsights.com" class="login-btn">Client Login</a>
     </div>
-  </div>
+  </header>
 
-  <main>
-    <div class="card">
-      <h2>Vendor Due Diligence</h2>
-      <p><strong>Legal Entity:</strong> [FILL: Company legal name, e.g., “Clear Credit Insights LLC”]<br/>
-         <strong>Jurisdiction:</strong> [FILL: State/Country of incorporation]<br/>
-         <strong>Primary Contact:</strong> [FILL: Name, Title] — <a href="mailto:[FILL: contact@yourdomain]">[FILL: contact@yourdomain]</a><br/>
-         <strong>Security Contact:</strong> <a href="mailto:[FILL: security@yourdomain]">[FILL: security@yourdomain]</a><br/>
-         <strong>Business Address:</strong> [FILL: Address]</p>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <h1>Vendor Due Diligence</h1>
+      <p>Everything your vendor management team needs to review Clear Credit Insights as a third‑party provider.</p>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Insurance Coverage</h3>
-      <table>
-        <tr><th>Policy</th><th>Limit</th><th>Notes</th></tr>
-        <tr><td>Professional Liability (E&O)</td><td>[FILL: $1M / $2M]</td><td>Coverage for services rendered</td></tr>
-        <tr><td>Cyber Liability</td><td>[FILL: $1M]</td><td>Network security & privacy</td></tr>
-        <tr><td>General Liability</td><td>[FILL: $1M]</td><td>Bodily injury/property damage</td></tr>
+  <!-- Company Profile -->
+  <section>
+    <div class="wrap">
+      <h2>Company Profile</h2>
+      <table aria-label="Company profile">
+        <tbody>
+          <tr><th scope="row">Legal Name</th><td>Clear Credit Insights, LLC <span class="badge">U.S.</span></td></tr>
+          <tr><th scope="row">Address</th><td>[PLACEHOLDER street], [City, ST ZIP]</td></tr>
+          <tr><th scope="row">Website</th><td>https://creditinsight.netlify.app/</td></tr>
+          <tr><th scope="row">POC (Primary)</th><td>[Your Name], Principal — <a href="mailto:[you@domain.com]">[you@domain.com]</a> — [Phone]</td></tr>
+          <tr><th scope="row">Support</th><td><a href="mailto:support@yourdomain.com">support@yourdomain.com</a></td></tr>
+          <tr><th scope="row">Tax ID (EIN)</th><td>[PLACEHOLDER]</td></tr>
+          <tr><th scope="row">Entity</th><td>LLC, formed in [State], USA</td></tr>
+          <tr><th scope="row">Year Founded</th><td>[YYYY]</td></tr>
+          <tr><th scope="row">NAICS</th><td>541611 (Administrative/Management Consulting) or 522298 (All Other Nondepository Credit Intermediation) — choose appropriate</td></tr>
+          <tr><th scope="row">Services</th><td>Commercial loan underwriting support, independent portfolio reviews, risk rating validation, credit policy advisory, special projects.</td></tr>
+        </tbody>
       </table>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Controls & Certifications</h3>
-      <ul>
-        <li><strong>Hosting & Portal:</strong> Citrix ShareFile Business/Enterprise with encryption at rest and in transit.</li>
-        <li><strong>Policies:</strong> documented InfoSec, Access Control, Vendor Risk, Incident Response.</li>
-        <li><strong>Background Checks:</strong> required for employees/contractors handling client data.</li>
-        <li><strong>Training:</strong> annual security and confidentiality training.</li>
-        <li><strong>Assessments:</strong> client due diligence and onsite/virtual reviews supported.</li>
-        <li><strong>[Optional]</strong> SOC 2: [FILL: If applicable, note status or timeline.]</li>
-      </ul>
+  <!-- Insurance -->
+  <section>
+    <div class="wrap">
+      <h2>Insurance Coverage</h2>
+      <p class="sub">Current policies and limits (certificates available upon request).</p>
+      <table aria-label="Insurance coverage">
+        <thead>
+          <tr><th scope="col">Policy</th><th scope="col">Carrier</th><th scope="col">Limit</th><th scope="col">Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Professional Liability / E&O</td><td>[Carrier]</td><td>$1,000,000 per claim / $2,000,000 aggregate</td><td>Covers errors in professional services (credit analysis/memos).</td></tr>
+          <tr><td>Cyber Liability</td><td>[Carrier]</td><td>$1,000,000</td><td>Data breach, notification, forensic costs, and restoration.</td></tr>
+          <tr><td>General Liability</td><td>[Carrier]</td><td>$1,000,000</td><td>Premises/operations (low exposure).</td></tr>
+          <tr><td>Workers’ Compensation</td><td>[Carrier]</td><td>Statutory</td><td>As required by state law.</td></tr>
+          <tr><td>Crime / Fidelity Bond (if applicable)</td><td>[Carrier]</td><td>$500,000 – $1,000,000</td><td>Employee dishonesty coverage (optional, some banks request).</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Target banks under $25B in assets typically accept the limits above; larger banks may request higher limits or umbrella coverage.</p>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Subprocessors / Critical Vendors</h3>
-      <ul>
-        <li>Citrix ShareFile — secure file portal and storage.</li>
-        <li>Email & productivity — [FILL: Microsoft 365 / Google Workspace].</li>
-        <li>Hosting (public website only) — Netlify.</li>
-        <li>Other subprocessors disclosed upon request during onboarding.</li>
-      </ul>
+  <!-- Security & Compliance Summary -->
+  <section>
+    <div class="wrap">
+      <h2>Security &amp; Compliance Summary</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Secure Document Portal (ShareFile)</h3>
+          <ul>
+            <li>AES‑256 at rest, TLS 1.2+ in transit</li>
+            <li>Granular folder permissions and expiring links</li>
+            <li>MFA, device/IP logging, comprehensive audit trails</li>
+            <li>U.S. data residency available</li>
+            <li> SOC 2 Type II attestation (ShareFile platform)</li>
+          </ul>
+          <p>See our <a href="/security-compliance.html">Security &amp; Compliance</a> page for details.</p>
+        </div>
+        <div class="card">
+          <h3>Internal Controls</h3>
+          <ul>
+            <li>Role‑based access; least privilege</li>
+            <li>Full‑disk encryption on analyst devices</li>
+            <li>No long‑term local storage of borrower documents</li>
+            <li>Template change control &amp; QC reviews</li>
+            <li>Incident response &amp; business continuity plans</li>
+          </ul>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h3>Data Handling</h3>
-      <ul>
-        <li>Client data segregated by engagement, access restricted to need-to-know.</li>
-        <li>Retention: <strong>[FILL: X years]</strong> unless otherwise agreed; secure deletion available on request.</li>
-        <li>Incident response: notify affected clients within <strong>[FILL: e.g., 48 hours]</strong> of confirmed incident, per contract/regulation.</li>
-      </ul>
+  <!-- Data Handling & Retention -->
+  <section>
+    <div class="wrap">
+      <h2>Data Handling, Retention &amp; Deletion</h2>
+      <table aria-label="Data handling">
+        <tbody>
+          <tr><th scope="row">Collection</th><td>Borrower documents received exclusively via ShareFile; email attachments discouraged and, if received, uploaded then deleted from mailbox.</td></tr>
+          <tr><th scope="row">Use</th><td>Used solely to perform agreed underwriting, review, and analysis services.</td></tr>
+          <tr><th scope="row">Retention</th><td>Workpapers retained for <em>[X months/years]</em> unless otherwise requested by client.</td></tr>
+          <tr><th scope="row">Deletion</th><td>Secure deletion within <em>[Y days]</em> after retention period or upon written request.</td></tr>
+          <tr><th scope="row">Backups</th><td>Encrypted backups managed by ShareFile per their data protection policy.</td></tr>
+          <tr><th scope="row">Sub‑processors</th><td>Core providers disclosed upon request; U.S. data residency preferred.</td></tr>
+        </tbody>
+      </table>
     </div>
-  </main>
+  </section>
 
-  <footer>
-    <p>&copy; 2025 Clear Credit Insights. All rights reserved. · <a href="security-compliance.html" style="color:#fff">Security & Compliance</a> · <a href="vendor-due-diligence.html" style="color:#fff">Vendor Due Diligence</a> · <a href="privacy.html" style="color:#fff">Privacy</a> · <a href="terms.html" style="color:#fff">Terms</a></p>
+  <!-- Incident Response & Business Continuity -->
+  <section>
+    <div class="wrap">
+      <h2>Incident Response &amp; Business Continuity</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Incident Response</h3>
+          <ul>
+            <li>Documented triage → containment → notification → post‑incident review</li>
+            <li>Client notification aligned to contractual obligations and applicable law</li>
+            <li>Platform event logs retained and reviewed as needed</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Business Continuity</h3>
+          <ul>
+            <li>Work products stored in ShareFile for continuity and recovery</li>
+            <li>Analysts can resume work from alternate devices using MFA</li>
+            <li>Critical templates and SOPs version‑controlled</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- References & Docs -->
+  <section>
+    <div class="wrap">
+      <h2>References &amp; Supporting Documents</h2>
+      <div class="card">
+        <ul>
+          <li><a href="[LINK-TO-W9.pdf]" target="_blank" rel="noopener">W‑9 (PDF)</a> — <em>[Upload your W‑9]</em></li>
+          <li><a href="[LINK-TO-COI.pdf]" target="_blank" rel="noopener">Certificates of Insurance (PDF)</a> — <em>[E&O, Cyber, GL, Workers’ Comp]</em></li>
+          <li><a href="/security-compliance.html">Security &amp; Compliance Overview</a></li>
+          <li><a href="[LINK-TO-SOC2-LETTER-or-PORTAL-DOC]" target="_blank" rel="noopener">ShareFile SOC 2 Type II (overview/letter)</a> — <em>From ShareFile/Citrix</em></li>
+          <li><a href="[LINK-TO-PRIVACY.pdf]" target="_blank" rel="noopener">Privacy &amp; Data Handling Policy (PDF)</a></li>
+          <li><a href="[LINK-TO-IR-PLAN.pdf]" target="_blank" rel="noopener">Incident Response Summary (PDF)</a></li>
+          <li><a href="[LINK-TO-BCP.pdf]" target="_blank" rel="noopener">Business Continuity Summary (PDF)</a></li>
+        </ul>
+        <p class="sub">References available upon request once client confidentiality permits.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="wrap">
+      <div class="card">
+        <h3 style="margin-top:0;color:var(--brand-navy)">Have a vendor questionnaire?</h3>
+        <p>Send your bank’s third‑party risk questionnaire and we’ll complete it within your timeline. We can also provide additional documentation upon request.</p>
+        <p style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="/security-compliance.html" class="btn" style="background:var(--brand-gold);color:var(--brand-navy);padding:12px 18px;border-radius:8px;font-weight:800;display:inline-block">View Security &amp; Compliance</a>
+          <a href="/#contact" class="btn" style="background:#fff;border:2px solid var(--brand-navy-2);color:var(--brand-navy);padding:10px 16px;border-radius:8px;font-weight:800;display:inline-block">Request Documentation</a>
+        </p>
+        <p class="sub">Last updated: August 14, 2025</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="wrap" style="text-align:center">
+      <p>&copy; 2025 Clear Credit Insights. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="/security-compliance.html">Security &amp; Compliance</a><span>·</span>
+        <a href="/vendor-due-diligence.html" aria-current="page">Vendor Due Diligence</a><span>·</span>
+        <a href="/insights.html">Insights</a><span>·</span>
+        <a href="/privacy.html">Privacy</a><span>·</span>
+        <a href="/terms.html">Terms</a>
+      </div>
+    </div>
   </footer>
+
+  <script>
+    const btn=document.querySelector('.menu-btn'); const mobile=document.getElementById('mobileNav');
+    if(btn&&mobile){btn.addEventListener('click',()=>{const open=mobile.style.display==='block';mobile.style.display=open?'none':'block';btn.setAttribute('aria-expanded',String(!open));});}
+  </script>
 </body>
 </html>
