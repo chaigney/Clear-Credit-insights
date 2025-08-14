@@ -1,9 +1,9 @@
 ---
-title: "How to Spot Early Warning Signs in CRE Loans"
+title: "How to Spot Early Warning Signs in C&I Loans"
 summary: "Recognizing small changes before they become big problems."
 ---
 
-# How to Spot Early Warning Signs in CRE Loans
+# How to Spot Early Warning Signs in C&I Loans
 
 Why Early Detection of Loan Issues Is Critical
 
